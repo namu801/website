@@ -11,6 +11,31 @@
   if (!toggle || !panel) return;
 
   const history = [];
+  const sendBtn = form.querySelector('button[type="submit"]');
+  let busy = false;
+
+  function setBusy(value) {
+    busy = value;
+    input.disabled = value;
+    sendBtn.disabled = value;
+  }
+
+  function typeOut(el, text, speed = 16) {
+    return new Promise((resolve) => {
+      let i = 0;
+      el.textContent = "";
+      (function tick() {
+        i += 1;
+        el.textContent = text.slice(0, i);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+        if (i < text.length) {
+          setTimeout(tick, speed);
+        } else {
+          resolve();
+        }
+      })();
+    });
+  }
 
   function openPanel() {
     panel.hidden = false;
@@ -45,12 +70,14 @@
 
   async function sendMessage(text) {
     const trimmed = text.trim();
-    if (!trimmed) return;
+    if (!trimmed || busy) return;
 
+    setBusy(true);
     addBubble("user", trimmed);
     history.push({ role: "user", content: trimmed });
 
-    const pending = addBubble("assistant", "…");
+    const pending = addBubble("assistant", "생각 중...");
+    pending.classList.add("chat-bubble-thinking");
 
     try {
       const response = await fetch("/api/chat", {
@@ -68,13 +95,16 @@
         throw new Error(data.error || "Request failed");
       }
 
-      pending.textContent = data.reply;
+      pending.classList.remove("chat-bubble-thinking");
+      await typeOut(pending, data.reply);
       history.push({ role: "assistant", content: data.reply });
     } catch (error) {
+      pending.classList.remove("chat-bubble-thinking");
       pending.textContent =
         "죄송해요, 문제가 발생했어요. 다시 시도해주시거나 zjavbxjlove@naver.com으로 직접 연락해주세요.";
     }
 
+    setBusy(false);
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
 
