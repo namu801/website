@@ -1,0 +1,50 @@
+{
+  "name": "Yoonji Nam Portfolio Design System",
+  "description": "A minimal product design portfolio system for a Seoul-based designer using AI prototyping as a core working method.",
+  "principles": [
+    "Minimal and editorial rather than decorative.",
+    "Hiring-focused, not freelance-focused.",
+    "Evidence-led case studies with clear product context and outcomes.",
+    "Local assets only: images in images/ and icons in icons/."
+  ],
+  "components": {
+    "siteHeader": {
+      "usage": "Sticky top navigation with name, Work, Resume, About, and Contact links.",
+      "style": "Light typography, transparent white backdrop, no heavy branding."
+    },
+    "hero": {
+      "usage": "Introduce Yoonji and her design focus.",
+      "content": "Headline, short bio, and a placeholder for a 3D interactive animation.",
+      "assetPath": "images/"
+    },
+    "projectCard": {
+      "usage": "Link to individual case study pages.",
+      "style": "All cards use equal image and content sizing.",
+      "assetPath": "images/"
+    },
+    "caseStudyPage": {
+      "usage": "Reusable case study template for 3-4 projects.",
+      "sections": ["Overview", "Problem", "AI Prototyping Approach", "Design Direction", "Outcome"]
+    },
+    "resumeSection": {
+      "usage": "Summarize work history and link to a resume PDF.",
+      "content": "Role, date range, company, concise contribution statement."
+    },
+    "contactSection": {
+      "usage": "List direct contact details without a hard-sell CTA.",
+      "content": "Email, LinkedIn, website, location."
+    }
+  },
+  "assets": {
+    "images": "/Users/username/Desktop/AI Prototyping Studio/images/",
+    "icons": "/Users/username/Desktop/AI Prototyping Studio/icons/"
+  },
+  "doNotUse": [
+    "Orange as a point color",
+    "External image URLs",
+    "Remote icon libraries",
+    "Beige page backgrounds",
+    "Heavy bold typography throughout",
+    "Freelance-oriented calls to action"
+  ]
+}
