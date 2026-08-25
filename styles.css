@@ -74,22 +74,24 @@ p {
 }
 
 .chat-toggle {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: none;
   border-radius: 999px;
-  background: var(--surface);
-  color: var(--point-dark);
+  background: var(--ink);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .chat-toggle:hover,
 .chat-toggle[aria-expanded="true"] {
-  border-color: var(--point);
-  color: var(--point);
+  background: var(--point-dark);
 }
 
 .nav a:hover,
