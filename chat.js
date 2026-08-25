@@ -72,7 +72,7 @@
       history.push({ role: "assistant", content: data.reply });
     } catch (error) {
       pending.textContent =
-        "Sorry, something went wrong. Please try again or reach Yoonji directly at zjavbxjlove@naver.com.";
+        "죄송해요, 문제가 발생했어요. 다시 시도해주시거나 zjavbxjlove@naver.com으로 직접 연락해주세요.";
     }
 
     messagesEl.scrollTop = messagesEl.scrollHeight;
