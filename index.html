@@ -19,13 +19,67 @@
   <body>
     <header class="site-header">
       <a class="brand" href="#top" aria-label="Yoonji Nam home">Yoonji Nam</a>
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="#work">Work</a>
-        <a href="#resume">Resume</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <div class="header-actions">
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="#work">Work</a>
+          <a href="#resume">Resume</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button
+          class="chat-toggle"
+          type="button"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+          aria-controls="chat-panel"
+          aria-label="Ask an AI assistant about Yoonji"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              d="M8 1.5 9.4 5.9 13.8 7.3 9.4 8.7 8 13.1 6.6 8.7 2.2 7.3 6.6 5.9 8 1.5Z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
     </header>
+
+    <div class="chat-backdrop" id="chat-backdrop" hidden></div>
+
+    <aside id="chat-panel" class="chat-panel" role="dialog" aria-modal="true" aria-label="Ask about Yoonji" hidden>
+      <div class="chat-panel-header">
+        <p>Ask about Yoonji</p>
+        <button class="chat-close" type="button" aria-label="Close chat">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M1 1 13 13M13 1 1 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="chat-messages" id="chat-messages">
+        <div class="chat-bubble chat-bubble-assistant">
+          Hi, I'm an AI assistant trained on Yoonji's resume and work. Ask me anything about her background, process, or availability.
+        </div>
+      </div>
+
+      <div class="chat-chips" id="chat-chips">
+        <button type="button" class="chat-chip" data-action="scroll" data-target="#work">see her work ↓</button>
+        <button type="button" class="chat-chip" data-action="ask" data-question="What's your design process like?">what's your process?</button>
+        <button type="button" class="chat-chip" data-action="ask" data-question="What tools do you use?">what tools do you use?</button>
+        <button type="button" class="chat-chip" data-action="ask" data-question="Are you open to full-time roles right now?">open to full-time roles?</button>
+        <button type="button" class="chat-chip" data-action="link" data-target="Resume_YoonjiNam.pdf">resume ↗</button>
+        <button type="button" class="chat-chip" data-action="scroll" data-target="#contact">contact ↓</button>
+      </div>
+
+      <form class="chat-input-row" id="chat-form">
+        <input type="text" id="chat-input" placeholder="Ask about Yoonji..." autocomplete="off" aria-label="Ask about Yoonji" />
+        <button type="submit" aria-label="Send">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </form>
+    </aside>
 
     <main id="top">
       <section class="hero section">
@@ -61,29 +115,65 @@
           <a class="project-card" href="case-study.html">
             <div class="project-image">
               <div class="image-placeholder">
-                <span>Add final product screen or prototype hero image for the AI feature project.</span>
+                <span>Add a screen or on-site photo of the Samsung Tech Fair docent app.</span>
               </div>
             </div>
             <div class="project-copy">
-              <h3>Improving an existing product with an AI-prototyped feature</h3>
-              <p class="project-meta">AI prototyping / Product improvement</p>
-              <p>
-                Show how Yoonji identified friction, used AI to explore interaction
-                options, and designed a feature that made the product easier to use.
-              </p>
+              <h3>Samsung Tech Fair Docent App</h3>
+              <p class="project-meta">Exhibition App / UX Flow Redesign</p>
+              <p>Redesigned the voting flow for a global tech exhibition docent app — satisfaction +18pp, 91.4% participation.</p>
             </div>
           </a>
 
           <a class="project-card" href="case-study.html">
             <div class="project-image">
               <div class="image-placeholder">
-                <span>Add screenshot or prototype image for case study 02.</span>
+                <span>Add a screen of the PBV fleet CMS dashboard.</span>
               </div>
             </div>
             <div class="project-copy">
-              <h3>Case Study Title 02</h3>
-              <p class="project-meta">Research / Flow redesign</p>
-              <p>Replace with a concise description of the problem, audience, and outcome.</p>
+              <h3>PBV Fleet CMS</h3>
+              <p class="project-meta">B2B Admin / Design System</p>
+              <p>Built a new content management system for PBV fleet operators, from information architecture to a shared design system.</p>
+            </div>
+          </a>
+
+          <a class="project-card" href="case-study.html">
+            <div class="project-image">
+              <div class="image-placeholder">
+                <span>Add a screen or in-cabin photo of the PBV multi-display infotainment UI.</span>
+              </div>
+            </div>
+            <div class="project-copy">
+              <h3>PBV Multi-Display Infotainment</h3>
+              <p class="project-meta">HMI / Multi-Display UI</p>
+              <p>Designed passenger-facing UI across a triple-display cabin, turning live vehicle data into real-time travel information.</p>
+            </div>
+          </a>
+
+          <a class="project-card" href="case-study.html">
+            <div class="project-image">
+              <div class="image-placeholder">
+                <span>Add a screen or photo of the driver/passenger control pad.</span>
+              </div>
+            </div>
+            <div class="project-copy">
+              <h3>PBV Control Pad</h3>
+              <p class="project-meta">HMI / Driver &amp; Passenger UX</p>
+              <p>Unified conflicting driver and passenger needs into one control pad flow, refined through on-site field observation.</p>
+            </div>
+          </a>
+
+          <a class="project-card" href="case-study.html">
+            <div class="project-image">
+              <div class="image-placeholder">
+                <span>Add a flow diagram or prototype image for the transfer tourism scenario.</span>
+              </div>
+            </div>
+            <div class="project-copy">
+              <h3>PBV Transfer Tourism Scenario</h3>
+              <p class="project-meta">Service Design / UX Flow</p>
+              <p>Planned the transfer-tourism UX flow that became PBV's flagship business scenario, from hypothesis to validated prototype.</p>
             </div>
           </a>
         </div>
@@ -95,13 +185,39 @@
           <a class="project-card" href="case-study.html">
             <div class="project-image">
               <div class="image-placeholder">
-                <span>Add photo or video of an exhibition space UX, installation, or event content project.</span>
+                <span>Add a photo of the K-Display 2024 PBV exhibition booth.</span>
               </div>
             </div>
             <div class="project-copy">
-              <h3>Case Study Title 03</h3>
-              <p class="project-meta">Exhibition UX / Spatial experience</p>
-              <p>Use this for an exhibition, installation, or content-driven experience project.</p>
+              <h3>K-Display 2024</h3>
+              <p class="project-meta">Exhibition UX / Booth Experience</p>
+              <p>Led the company's first public exhibition, planning and running an immersive PBV experience booth end-to-end.</p>
+            </div>
+          </a>
+
+          <a class="project-card" href="case-study.html">
+            <div class="project-image">
+              <div class="image-placeholder">
+                <span>Add a photo or content still from the CES 2023 Samsung Ready Care booth.</span>
+              </div>
+            </div>
+            <div class="project-copy">
+              <h3>CES 2023 — Samsung Ready Care</h3>
+              <p class="project-meta">Exhibition Content / On-site Ops</p>
+              <p>Reframed driver-monitoring tech into an approachable hands-on scenario for Samsung's exhibit at CES Las Vegas.</p>
+            </div>
+          </a>
+
+          <a class="project-card" href="case-study.html">
+            <div class="project-image">
+              <div class="image-placeholder">
+                <span>Add a photo or video still from the CES 2023 HD Hyundai OceanWise booth.</span>
+              </div>
+            </div>
+            <div class="project-copy">
+              <h3>CES 2023 — HD Hyundai OceanWise</h3>
+              <p class="project-meta">Content Planning / Video / On-site Ops</p>
+              <p>Planned video content and ran the floor for HD Hyundai's autonomous-ship exhibit, adapting to visitor feedback live.</p>
             </div>
           </a>
         </div>
@@ -110,16 +226,55 @@
       <section class="section work-category" aria-label="Side Projects">
         <h3 class="category-title">Side Projects</h3>
         <div class="work-grid">
-          <a class="project-card optional" href="case-study.html">
+          <a class="project-card" href="case-study.html">
             <div class="project-image">
               <div class="image-placeholder">
-                <span>Add screenshot or documentation image for a self-directed project.</span>
+                <span>Add a figure or excerpt from the published HCI paper.</span>
               </div>
             </div>
             <div class="project-copy">
-              <h3>Case Study Title 04</h3>
-              <p class="project-meta">Personal / Side project</p>
-              <p>Use this for a competition entry, published research, or independent build.</p>
+              <h3>AI Assistant Trust Research</h3>
+              <p class="project-meta">HCI Research / Published Paper</p>
+              <p>Studied how authenticity and autonomy shape user trust in AI assistants that hallucinate at work — hypothesis to a published HCI paper.</p>
+            </div>
+          </a>
+
+          <a class="project-card" href="case-study.html">
+            <div class="project-image">
+              <div class="image-placeholder">
+                <span>Add a screenshot of the launched Myeongun Jegwajeom app.</span>
+              </div>
+            </div>
+            <div class="project-copy">
+              <h3>Myeongun Jegwajeom App</h3>
+              <p class="project-meta">Mobile App / 0 to 1</p>
+              <p>Took a quote-recommendation app from concept to launch — research, flow design, a design system, and QA/usability testing.</p>
+            </div>
+          </a>
+
+          <a class="project-card" href="case-study.html">
+            <div class="project-image">
+              <div class="image-placeholder">
+                <span>Add before/after screens for the KakaoTalk Gift redesign.</span>
+              </div>
+            </div>
+            <div class="project-copy">
+              <h3>KakaoTalk Gift UX Improvement</h3>
+              <p class="project-meta">Self-directed / Redesign</p>
+              <p>Add a concise description of the friction you found in KakaoTalk Gift and the flow you redesigned.</p>
+            </div>
+          </a>
+
+          <a class="project-card optional" href="case-study.html">
+            <div class="project-image">
+              <div class="image-placeholder">
+                <span>Add before/after screens for the Seoul Bike (Ttareungyi) renewal.</span>
+              </div>
+            </div>
+            <div class="project-copy">
+              <h3>Seoul Bike (Ttareungyi) Renewal</h3>
+              <p class="project-meta">Self-directed / Redesign</p>
+              <p>Add a concise description of the problem, approach, and outcome for this bike-share app renewal.</p>
             </div>
           </a>
         </div>
@@ -198,5 +353,7 @@
       <p>Yoonji Nam, Product Designer</p>
       <a href="#top">Back to top</a>
     </footer>
+
+    <script src="chat.js" defer></script>
   </body>
 </html>
