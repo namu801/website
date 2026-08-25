@@ -518,6 +518,17 @@ dt {
   color: var(--point-dark);
 }
 
+.chat-contact-hint {
+  display: block;
+  padding: 0 24px 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.chat-contact-hint:hover {
+  color: var(--point-dark);
+}
+
 .chat-input-row {
   display: flex;
   align-items: center;
