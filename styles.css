@@ -106,6 +106,27 @@ p {
   margin: 0 auto;
 }
 
+.dark-section {
+  /* One deliberate dark "beat" — flips the local palette for whatever
+     section carries this class. Child rules keep using var(--ink)/
+     var(--muted)/etc., so they pick up these overrides automatically. */
+  --bg: #141312;
+  --surface: #141312;
+  --ink: #f5f4f2;
+  --muted: #a8a5a0;
+  --soft: #201f1d;
+  --line: #34322f;
+  --point: #d9bdd0;
+  --point-dark: #efdcea;
+  --point-soft: #2a2426;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.hero-band {
+  border-bottom: 1px solid var(--line);
+}
+
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 0.88fr) minmax(280px, 0.72fr);
@@ -258,7 +279,6 @@ h3 {
 }
 
 .resume-band {
-  background: var(--surface);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
@@ -589,6 +609,43 @@ dt {
   }
   50% {
     opacity: 1;
+  }
+}
+
+.section-split,
+.work-category .category-title,
+.project-card,
+.resume-list article,
+.contact,
+.overview-list,
+.case-section {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section-split.is-visible,
+.work-category .category-title.is-visible,
+.project-card.is-visible,
+.resume-list article.is-visible,
+.contact.is-visible,
+.overview-list.is-visible,
+.case-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-split,
+  .work-category .category-title,
+  .project-card,
+  .resume-list article,
+  .contact,
+  .overview-list,
+  .case-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 

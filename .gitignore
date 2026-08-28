@@ -2,3 +2,9 @@ node_modules/
 .vercel
 .env
 .env.local
+.DS_Store
+
+# local design drafts - not for production
+*-draft.html
+*-draft.css
+*-draft.js
