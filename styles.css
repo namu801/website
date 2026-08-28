@@ -174,28 +174,19 @@ p {
   background-color: var(--fill);
 }
 
-/* ---------- Scroll-reveal hooks (motion.js / GSAP) ---------- */
-
-[data-anim] {
-  opacity: 0;
-}
+/* ---------- Scroll-reveal hooks (motion.js / GSAP) ----------
+   Elements start at their normal visible state; motion.js hides and
+   re-reveals them itself (gsap.set/.from), so a no-JS or GSAP-failed
+   visitor still sees all content instead of a page stuck at opacity:0. */
 
 [data-anim="line"] > span {
   overflow: hidden;
   display: block;
 }
 
-[data-anim="line"] > span > span {
-  display: block;
-  transform: translateY(110%);
-}
-
 @media (prefers-reduced-motion: reduce) {
-  [data-anim] {
-    opacity: 1 !important;
-  }
   [data-anim="line"] > span > span {
-    transform: none !important;
+    clip-path: none !important;
   }
 }
 
