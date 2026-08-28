@@ -37,19 +37,20 @@ p {
   margin-top: 0;
 }
 
-.site-header {
+.site-header-band {
   position: sticky;
   top: 0;
   z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.site-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  width: min(1160px, calc(100% - 40px));
-  margin: 0 auto;
   padding: 22px 0;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(18px);
 }
 
 .brand {
