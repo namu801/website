@@ -161,6 +161,19 @@
       });
     }
 
+    // Bold highlight words in each experience row underline themselves in
+    // reading order as that row scrolls through the viewport.
+    document.querySelectorAll(".exp-row").forEach((row) => {
+      const hl = row.querySelectorAll(".hl");
+      if (!hl.length) return;
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: row, start: "top 76%", end: "bottom 62%", scrub: 0.5 },
+      });
+      hl.forEach((el, k) => {
+        tl.fromTo(el, { backgroundSize: "0% 1px" }, { backgroundSize: "100% 1px", duration: 1, ease: "none" }, k * 1.4);
+      });
+    });
+
     document.querySelectorAll('[data-dither="card"], [data-dither="sm"], [data-dither="foot"]').forEach((el) => {
       gsap.fromTo(
         el,

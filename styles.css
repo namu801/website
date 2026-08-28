@@ -743,13 +743,16 @@ p {
 
 .work-card-meta {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: space-between;
   gap: 10px;
   margin-top: 18px;
 }
 
 .work-card-meta h4 {
+  flex: 1 1 auto;
+  min-width: 0;
   margin: 0;
   font-size: clamp(16px, 1.5vw, 19px);
   font-weight: 800;
@@ -759,12 +762,14 @@ p {
 
 .work-card-year {
   flex: none;
+  margin-top: 2px;
   padding: 4px 9px;
   border: 1px solid var(--line-paper);
   color: var(--ts-paper);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.1em;
+  white-space: nowrap;
 }
 
 .work-card-tags {
@@ -790,8 +795,6 @@ p {
 .exp-intro {
   flex: 1 1 400px;
   min-width: 280px;
-  position: sticky;
-  top: 88px;
 }
 
 .exp-intro .section-index {
@@ -878,7 +881,19 @@ p {
 
 .exp-row .hl {
   color: var(--paper);
-  font-weight: 700;
+  font-weight: 600;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  background-image: linear-gradient(var(--paper), var(--paper));
+  background-repeat: no-repeat;
+  background-position: 0 1.15em;
+  background-size: 0% 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exp-row .hl {
+    background-size: 100% 1px;
+  }
 }
 
 /* Contact */
@@ -1592,10 +1607,6 @@ p {
   .split-section .wrap,
   #experience .wrap {
     flex-direction: column;
-  }
-
-  .exp-intro {
-    position: static;
   }
 
   .overlay-detail-band {
