@@ -932,6 +932,13 @@ p {
   overscroll-behavior: contain;
 }
 
+/* .no-agent is toggled on <html> by chat.js when the panel is closed,
+   so the overlay reclaims the space instead of leaving a gap where a
+   closed panel used to be. */
+html.no-agent .overlay {
+  right: 0;
+}
+
 @media (max-width: 860px) {
   .overlay {
     right: 0;

@@ -38,12 +38,14 @@
 
   function openPanel() {
     panel.hidden = false;
+    document.documentElement.classList.remove("no-agent");
     toggle.setAttribute("aria-expanded", "true");
     input.focus();
   }
 
   function closePanel() {
     panel.hidden = true;
+    document.documentElement.classList.add("no-agent");
     toggle.setAttribute("aria-expanded", "false");
   }
 
