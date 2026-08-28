@@ -9,6 +9,7 @@
   --line-ink: #2a2a2a;
   --fill: #e6e3dc;
   --shadow: 0 24px 70px rgba(10, 10, 10, 0.14);
+  --chat-width: 380px;
 }
 
 * {
@@ -920,12 +921,22 @@ p {
 
 .overlay {
   position: fixed;
-  inset: 0;
-  z-index: 980;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: var(--chat-width);
+  z-index: 950;
   background: var(--paper);
   color: var(--ink);
   overflow-y: auto;
   overscroll-behavior: contain;
+}
+
+@media (max-width: 860px) {
+  .overlay {
+    right: 0;
+    z-index: 980;
+  }
 }
 
 .overlay-topbar {
@@ -1384,11 +1395,23 @@ p {
   min-width: 0;
 }
 
-/* ---------- Chat panel ---------- */
+/* ---------- Chat panel ----------
+   Always-dark surface, independent of the light site around it, so the
+   boundary between "the site" and "the agent" reads unambiguously at a
+   glance. Scoped custom properties: every existing chat-* rule already
+   reads var(--paper)/var(--ink)/etc., so redefining them here recolors
+   the whole panel without touching those rules. */
 
 .chat-panel {
-  flex: 0 0 380px;
-  width: 380px;
+  --paper: #121214;
+  --paper-2: #1c1c1f;
+  --ink: #f5f4f2;
+  --ts-paper: #9a9a9a;
+  --ts-ink: #9a9a9a;
+  --line-paper: #313134;
+
+  flex: 0 0 var(--chat-width);
+  width: var(--chat-width);
   flex-direction: column;
   background: var(--paper);
   color: var(--ink);
