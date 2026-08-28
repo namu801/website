@@ -6,27 +6,33 @@
     <title>Yoonji Nam | Product Designer</title>
     <meta
       name="description"
-      content="Portfolio template for Yoonji Nam, a Seoul-based product designer focused on AI prototyping and product improvement."
+      content="Yoonji Nam, a Seoul-based product designer working across mobility, exhibitions, and self-initiated products."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="site-header-band">
-      <div class="site-header section">
-        <a class="brand" href="#top" aria-label="Yoonji Nam home">Yoonji Nam</a>
+    <div class="scroll-progress" data-progress></div>
+    <div class="cursor-ring" data-cursor-ring></div>
+    <div class="cursor-dot" data-cursor-dot></div>
+
+    <header class="site-header">
+      <div class="wrap">
+        <div class="brand-group">
+          <span class="brand">YOONJI NAM</span>
+          <span class="brand-role">Product Designer</span>
+        </div>
         <div class="header-actions">
           <nav class="nav" aria-label="Primary navigation">
-            <a href="#work">Work</a>
-            <a href="#resume">Resume</a>
             <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="#approach">How I Work</a>
+            <a href="#work">Works</a>
+            <a href="#experience">Experience</a>
           </nav>
+          <button type="button" class="pill-btn" data-invert-toggle aria-label="Invert theme">
+            <span class="dot"></span>
+            <span data-invert-label>Invert</span>
+          </button>
           <button
             class="chat-toggle"
             type="button"
@@ -35,11 +41,8 @@
             aria-controls="chat-panel"
             aria-label="AI 어시스턴트에게 Yoonji에 대해 물어보기"
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path
-                d="M8 1.5 9.4 5.9 13.8 7.3 9.4 8.7 8 13.1 6.6 8.7 2.2 7.3 6.6 5.9 8 1.5Z"
-                fill="currentColor"
-              />
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 1.5 9.4 5.9 13.8 7.3 9.4 8.7 8 13.1 6.6 8.7 2.2 7.3 6.6 5.9 8 1.5Z" fill="currentColor" />
             </svg>
             <span>Agent</span>
           </button>
@@ -84,282 +87,323 @@
       </form>
     </aside>
 
-    <main id="top">
-      <section class="hero-band dark-section">
-        <div class="hero section">
-          <div class="hero-copy">
-            <p class="eyebrow">Product Designer, Seoul</p>
-            <h1>Simplicity is what users see.<br />Complexity is what I design.</h1>
-            <p class="hero-text">
-              I define what matters, translate what's technical, and connect the
-              systems behind the experience—so users can focus on what they came to
-              do.
-            </p>
+    <main>
+      <section class="hero">
+        <div class="wrap">
+          <div class="hero-eyebrow" data-anim="fade">Portfolio 2026</div>
+          <h1 data-anim="line">
+            <span><span>Simplicity is what users see.</span></span>
+            <span><span class="dim">Complexity is what I design.</span></span>
+          </h1>
+          <p class="hero-text" data-anim="fade">
+            I define what matters, translate what's technical, and connect the systems behind the
+            experience—so users can focus on what they came to do.
+          </p>
+          <div class="hero-visual" data-dither="hero"></div>
+          <div class="hero-cta-row">
+            <a class="btn-primary" href="#work" data-magnetic>View Selected Work <span>↓</span></a>
           </div>
-          <div class="animation-placeholder image-placeholder" role="img" aria-label="3D interactive animation placeholder">
-            <span>Replace with a 3D interactive animation that reflects Yoonji's AI prototyping process, product thinking, or selected work.</span>
-          </div>
         </div>
-      </section>
-
-      <section id="work" class="section section-split">
-        <div>
-          <p class="eyebrow">Selected Work</p>
-          <h2>Case studies for product teams evaluating design judgment.</h2>
-        </div>
-        <p>
-          Grouped by Digital Product, Experience Design, and Side Projects.
-          Each card should link to a case study page with context, process,
-          prototype evidence, and impact.
-        </p>
-      </section>
-
-      <section class="section work-category" aria-label="Digital Product case studies">
-        <h3 class="category-title">Digital Product</h3>
-        <div class="work-grid">
-          <a class="project-card" href="case-study.html">
-            <div class="project-image">
-              <div class="image-placeholder">
-                <span>Add a screen or on-site photo of the Samsung Tech Fair docent app.</span>
-              </div>
-            </div>
-            <div class="project-copy">
-              <h3>Samsung Tech Fair Docent App</h3>
-              <p class="project-meta">Exhibition App / UX Flow Redesign</p>
-              <p>Redesigned the voting flow for a global tech exhibition docent app — satisfaction +18pp, 91.4% participation.</p>
-            </div>
-          </a>
-
-          <a class="project-card" href="case-study.html">
-            <div class="project-image">
-              <div class="image-placeholder">
-                <span>Add a screen of the PBV fleet CMS dashboard.</span>
-              </div>
-            </div>
-            <div class="project-copy">
-              <h3>PBV Fleet CMS</h3>
-              <p class="project-meta">B2B Admin / Design System</p>
-              <p>Built a new content management system for PBV fleet operators, from information architecture to a shared design system.</p>
-            </div>
-          </a>
-
-          <a class="project-card" href="case-study.html">
-            <div class="project-image">
-              <div class="image-placeholder">
-                <span>Add a screen or in-cabin photo of the PBV multi-display infotainment UI.</span>
-              </div>
-            </div>
-            <div class="project-copy">
-              <h3>PBV Multi-Display Infotainment</h3>
-              <p class="project-meta">HMI / Multi-Display UI</p>
-              <p>Designed passenger-facing UI across a triple-display cabin, turning live vehicle data into real-time travel information.</p>
-            </div>
-          </a>
-
-          <a class="project-card" href="case-study.html">
-            <div class="project-image">
-              <div class="image-placeholder">
-                <span>Add a screen or photo of the driver/passenger control pad.</span>
-              </div>
-            </div>
-            <div class="project-copy">
-              <h3>PBV Control Pad</h3>
-              <p class="project-meta">HMI / Driver &amp; Passenger UX</p>
-              <p>Unified conflicting driver and passenger needs into one control pad flow, refined through on-site field observation.</p>
-            </div>
-          </a>
-
-          <a class="project-card" href="case-study.html">
-            <div class="project-image">
-              <div class="image-placeholder">
-                <span>Add a flow diagram or prototype image for the transfer tourism scenario.</span>
-              </div>
-            </div>
-            <div class="project-copy">
-              <h3>PBV Transfer Tourism Scenario</h3>
-              <p class="project-meta">Service Design / UX Flow</p>
-              <p>Planned the transfer-tourism UX flow that became PBV's flagship business scenario, from hypothesis to validated prototype.</p>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <section class="section work-category" aria-label="Experience Design case studies">
-        <h3 class="category-title">Experience Design</h3>
-        <div class="work-grid">
-          <a class="project-card" href="case-study.html">
-            <div class="project-image">
-              <div class="image-placeholder">
-                <span>Add a photo of the K-Display 2024 PBV exhibition booth.</span>
-              </div>
-            </div>
-            <div class="project-copy">
-              <h3>K-Display 2024</h3>
-              <p class="project-meta">Exhibition UX / Booth Experience</p>
-              <p>Led the company's first public exhibition, planning and running an immersive PBV experience booth end-to-end.</p>
-            </div>
-          </a>
-
-          <a class="project-card" href="case-study.html">
-            <div class="project-image">
-              <div class="image-placeholder">
-                <span>Add a photo or content still from the CES 2023 Samsung Ready Care booth.</span>
-              </div>
-            </div>
-            <div class="project-copy">
-              <h3>CES 2023 — Samsung Ready Care</h3>
-              <p class="project-meta">Exhibition Content / On-site Ops</p>
-              <p>Reframed driver-monitoring tech into an approachable hands-on scenario for Samsung's exhibit at CES Las Vegas.</p>
-            </div>
-          </a>
-
-          <a class="project-card" href="case-study.html">
-            <div class="project-image">
-              <div class="image-placeholder">
-                <span>Add a photo or video still from the CES 2023 HD Hyundai OceanWise booth.</span>
-              </div>
-            </div>
-            <div class="project-copy">
-              <h3>CES 2023 — HD Hyundai OceanWise</h3>
-              <p class="project-meta">Content Planning / Video / On-site Ops</p>
-              <p>Planned video content and ran the floor for HD Hyundai's autonomous-ship exhibit, adapting to visitor feedback live.</p>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <section class="section work-category" aria-label="Side Projects">
-        <h3 class="category-title">Side Projects</h3>
-        <div class="work-grid">
-          <a class="project-card" href="case-study.html">
-            <div class="project-image">
-              <div class="image-placeholder">
-                <span>Add a figure or excerpt from the published HCI paper.</span>
-              </div>
-            </div>
-            <div class="project-copy">
-              <h3>AI Assistant Trust Research</h3>
-              <p class="project-meta">HCI Research / Published Paper</p>
-              <p>Studied how authenticity and autonomy shape user trust in AI assistants that hallucinate at work — hypothesis to a published HCI paper.</p>
-            </div>
-          </a>
-
-          <a class="project-card" href="case-study.html">
-            <div class="project-image">
-              <div class="image-placeholder">
-                <span>Add a screenshot of the launched Myeongun Jegwajeom app.</span>
-              </div>
-            </div>
-            <div class="project-copy">
-              <h3>Myeongun Jegwajeom App</h3>
-              <p class="project-meta">Mobile App / 0 to 1</p>
-              <p>Took a quote-recommendation app from concept to launch — research, flow design, a design system, and QA/usability testing.</p>
-            </div>
-          </a>
-
-          <a class="project-card" href="case-study.html">
-            <div class="project-image">
-              <div class="image-placeholder">
-                <span>Add before/after screens for the KakaoTalk Gift redesign.</span>
-              </div>
-            </div>
-            <div class="project-copy">
-              <h3>KakaoTalk Gift UX Improvement</h3>
-              <p class="project-meta">Self-directed / Redesign</p>
-              <p>Add a concise description of the friction you found in KakaoTalk Gift and the flow you redesigned.</p>
-            </div>
-          </a>
-
-          <a class="project-card optional" href="case-study.html">
-            <div class="project-image">
-              <div class="image-placeholder">
-                <span>Add before/after screens for the Seoul Bike (Ttareungyi) renewal.</span>
-              </div>
-            </div>
-            <div class="project-copy">
-              <h3>Seoul Bike (Ttareungyi) Renewal</h3>
-              <p class="project-meta">Self-directed / Redesign</p>
-              <p>Add a concise description of the problem, approach, and outcome for this bike-share app renewal.</p>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <section id="resume" class="resume-band dark-section">
-        <div class="section resume">
+        <div class="stats-strip">
           <div>
-            <p class="eyebrow">Resume</p>
-            <h2>Experience shaped by product thinking, prototyping, and cross-functional work.</h2>
-            <a class="text-link" href="Resume_YoonjiNam.pdf" target="_blank" rel="noreferrer">Download resume (PDF)</a>
+            <div class="stat-label">Experience</div>
+            <div class="stat-value">3 yrs 4 mos</div>
           </div>
-          <div class="resume-list">
-            <article>
-              <p class="resume-date">Dec 2023 - Jun 2026 (2 yr 6 mo)</p>
+          <div>
+            <div class="stat-label">R&amp;D Project</div>
+            <div class="stat-value">₩8B R&amp;D Project</div>
+          </div>
+          <div>
+            <div class="stat-label">Domain</div>
+            <div class="stat-value">Mobility · PBV</div>
+          </div>
+          <div>
+            <div class="stat-label">Award</div>
+            <div class="stat-value">Innovation IT Award</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="split-section">
+        <div class="wrap">
+          <div class="split-label-col">
+            <div class="section-index">01&nbsp; Profile</div>
+            <h2 data-anim="head">About</h2>
+            <div class="about-subtitle">Yoonji Nam<br />Product Designer</div>
+          </div>
+          <div class="split-content-col">
+            <h3 class="about-heading" data-anim="head">
+              I design products where the hardware, the software, and the person using them all have to agree.
+            </h3>
+            <div class="about-body">
+              <p data-anim="fade">
+                Most of my work has been in mobility: passenger infotainment across three in-cabin displays,
+                control apps for drivers and passengers, and the operator tool that keeps them supplied with
+                content. I took these through the full product cycle — information architecture, design
+                system, engineering handoff, Alpha launch, and on-road testing in Seoul traffic.
+              </p>
+              <p data-anim="fade">
+                Before that, at Cheil Worldwide, I designed exhibition and campaign experiences for Samsung
+                Electronics and HD Hyundai. From a mobile app to a wall-sized display, the job was the same:
+                make unfamiliar technology legible enough that someone actually wants to use it.
+              </p>
+            </div>
+            <div class="pill-rows">
+              <div class="pill-row">
+                <div class="pill-row-label">Skills</div>
+                <div class="pill-list">
+                  <span class="pill">UX/UI Design</span>
+                  <span class="pill">Design Systems</span>
+                  <span class="pill">UX Research</span>
+                  <span class="pill">UX Writing</span>
+                  <span class="pill">Service Planning</span>
+                  <span class="pill">Prototyping</span>
+                  <span class="pill">Spatial UX</span>
+                </div>
+              </div>
+              <div class="pill-row">
+                <div class="pill-row-label">Tools</div>
+                <div class="pill-list">
+                  <span class="pill">Figma</span>
+                  <span class="pill">Adobe CC</span>
+                  <span class="pill">Notion</span>
+                  <span class="pill">Confluence</span>
+                  <span class="pill">Jira</span>
+                </div>
+              </div>
+              <div class="pill-row">
+                <div class="pill-row-label">AI Workflow</div>
+                <div class="pill-list">
+                  <span class="pill">FigmaMake</span>
+                  <span class="pill">Claude</span>
+                  <span class="pill">Gemini</span>
+                  <span class="pill">Midjourney</span>
+                  <span class="pill">Kling</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="approach" class="split-section">
+        <div class="wrap">
+          <div class="split-label-col">
+            <div class="section-index">02&nbsp; Approach</div>
+            <h2 data-anim="head">How I Work</h2>
+            <div class="approach-visual" data-dither="sm"></div>
+          </div>
+          <div class="split-content-col">
+            <div class="approach-card">
+              <h3>Start from the problem, not the screen</h3>
+              <p>
+                I read usage metrics alongside interviews and field observation before deciding what to draw.
+                On the parking kiosk project that meant 37 machines of data and five sites of watching people
+                fail at them — the redesign came out of what they did, not what the spec said.
+              </p>
+            </div>
+            <div class="approach-card">
+              <h3>Design the system, not one surface</h3>
+              <p>
+                A passenger display is only convincing if the control pad and the operator tool behave
+                consistently with it. I map the whole journey across hardware and software first, then design
+                each surface to hold its part of it.
+              </p>
+            </div>
+            <div class="approach-card">
+              <h3>Ship it with engineers</h3>
+              <p>
+                I own the information architecture and the design system, keep the handoff current, and stay
+                in the build. On the PBV content management system that meant carrying it through Alpha
+                launch and GPS-linked road testing rather than handing off a file.
+              </p>
+            </div>
+            <div class="approach-card">
+              <h3>Tie the work to something measurable</h3>
+              <p>
+                Redesigning the docent app voting flow moved satisfaction 18pp to 98% and participation to
+                91.4%. I frame decisions around outcomes like these — participation, brand experience,
+                operational efficiency — so the design has a reason beyond preference.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="impact">
+        <div class="wrap">
+          <div class="impact-label" data-anim="fade">Impact — Results in Numbers</div>
+          <div class="impact-grid">
+            <div class="impact-item">
+              <div class="kpi-row">
+                <span class="kpi-value" data-kpi="4.32" data-dec="2">0.00</span><span class="kpi-suffix">/5.0</span>
+              </div>
+              <p>Prototype design rating from 10 mobility experts</p>
+            </div>
+            <div class="impact-item">
+              <div class="kpi-row">
+                <span class="kpi-value" data-kpi="18" data-dec="0">0</span><span class="kpi-suffix">%p</span>
+              </div>
+              <p>Docent app satisfaction lift, reaching 98% overall</p>
+            </div>
+            <div class="impact-item">
+              <div class="kpi-row">
+                <span class="kpi-value" data-kpi="91.4" data-dec="1">0.0</span><span class="kpi-suffix">%</span>
+              </div>
+              <p>Voting participation rate at Samsung Tech Fair 2022</p>
+            </div>
+            <div class="impact-item">
+              <div class="kpi-row">
+                <span class="kpi-value" data-kpi="8" data-dec="0">0</span><span class="kpi-suffix">BN KRW</span>
+              </div>
+              <p>Scale of the five-year national PBV cabin R&amp;D program</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="split-section">
+        <div class="wrap" style="display: block;">
+          <div class="works-head">
+            <div>
+              <div class="section-index">03&nbsp; Work</div>
+              <h2 data-anim="head">Works</h2>
+            </div>
+            <p>From mobility infotainment and operator tooling to global tech-show experiences and self-initiated products.</p>
+          </div>
+
+          <div class="work-group">
+            <div class="work-group-head">
+              <h3 data-anim="head">Digital Product</h3>
+              <span>Products &amp; Systems</span>
+            </div>
+            <div class="work-grid" data-work-category="Digital Product"></div>
+          </div>
+
+          <div class="work-group">
+            <div class="work-group-head">
+              <h3 data-anim="head">Experience Design</h3>
+              <span>Exhibitions &amp; Campaigns</span>
+            </div>
+            <div class="work-grid" data-work-category="Experience Design"></div>
+          </div>
+
+          <div class="work-group">
+            <div class="work-group-head">
+              <h3 data-anim="head">Side Projects</h3>
+              <span>Self-initiated</span>
+            </div>
+            <div class="work-grid" data-work-category="Side Projects"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="split-section">
+        <div class="wrap">
+          <div class="exp-intro">
+            <div class="section-index">04&nbsp; Career</div>
+            <h2 data-anim="head">Three years across mobility, exhibitions, and public service.</h2>
+            <a class="resume-download" href="Resume_YoonjiNam.pdf" target="_blank" rel="noreferrer">
+              Download resume (PDF) <span>↓</span>
+            </a>
+            <p class="exp-total">Total experience · 3 yrs 4 mos</p>
+          </div>
+
+          <div class="exp-list">
+            <div class="exp-row">
+              <div class="exp-date">Dec 2023 — Jun 2026</div>
               <h3>UX/UI Designer, Maba Industry</h3>
               <p>
-                Led passenger-centered UX/UI on an 8B KRW national PBV cabin R&D
-                program, designing an integrated system spanning multi-display
-                infotainment, driver/passenger control pads, and a fleet CMS —
-                validated through live vehicle demos and expert evaluation (4.32/5.0).
+                I owned the <span class="hl">passenger experience on a PBV cabin program</span>: <span class="hl">three 55-inch in-cabin displays</span>, driver
+                and passenger control pads, and the operator CMS behind them — carried from scenario to
+                <span class="hl">a real vehicle driving through Gangnam</span>.
               </p>
-            </article>
-            <article>
-              <p class="resume-date">Jul 2022 - Jan 2023 (7 mo)</p>
+              <p>
+                Across hardware and software, <span class="hl">the interface is only half the problem</span>. I learned to
+                <span class="hl">read CAN data</span>, negotiate with engineers over what a screen can honestly promise, and
+                treat the operator tool as part of the passenger experience.
+              </p>
+            </div>
+            <div class="exp-row">
+              <div class="exp-date">Jul 2022 — Jan 2023</div>
               <h3>UX/UI Designer (Freelance), Cheil Worldwide</h3>
               <p>
-                Designed interactive exhibition experiences for global tech
-                showcases, including CES 2023 content for Samsung Electronics and
-                HD Hyundai, and a docent app redesign that lifted satisfaction 18pp
-                and voting participation to 91.4%.
+                I designed exhibition and campaign experiences for Samsung Electronics and HD Hyundai,
+                including <span class="hl">CES 2023</span>, and rebuilt the voting flow in the Samsung Tech Fair docent app —
+                <span class="hl">satisfaction up 18pp to 98%</span>.
               </p>
-            </article>
-            <article>
-              <p class="resume-date">Jul 2021 (2 mo)</p>
+              <p>
+                A show floor teaches you <span class="hl">how fast an experience has to explain itself</span>: unfamiliar
+                technology compressed into something a first-time visitor can follow in a minute.
+              </p>
+            </div>
+            <div class="exp-row">
+              <div class="exp-date">Jul — Aug 2021</div>
               <h3>Design Intern, Seoul Facilities Corporation</h3>
               <p>
-                Proposed a UX improvement for public parking payment kiosks based on
-                field observation across five sites, earning the Outstanding Intern
-                Award.
+                I studied <span class="hl">37 public parking payment kiosks</span> and observed five sites, then proposed a
+                universal-design UI with a working prototype. It earned the <span class="hl">Outstanding Intern Award</span>.
               </p>
-            </article>
-            <article>
-              <p class="resume-date">Education</p>
+              <p>
+                <span class="hl">The pain points that matter rarely appear in the spec</span>. Watching people who had no
+                choice but to use the machine still sets how I think about accessibility.
+              </p>
+            </div>
+            <div class="exp-row">
+              <div class="exp-date">Education &amp; Research</div>
               <h3>Konkuk University, Communication Design</h3>
-              <p>2016 - 2023, GPA 3.75/4.5.</p>
-            </article>
+              <p>
+                B.F.A., 2016 — 2023 · GPA 3.75 / 4.5. HCI College Membership, Cohort 2 at Companoid Institute
+                of Technology, with a paper published through the HCI Society of Korea. Hyundai Mobis ESG
+                Ideathon 2023.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="about" class="section section-split about">
-        <div>
-          <p class="eyebrow">About</p>
-          <h2>Based in Seoul, interested in full-time product design roles.</h2>
-        </div>
-        <p>
-          Replace this paragraph with a short bio. Mention the types of products
-          Yoonji wants to work on, how she collaborates with PMs and engineers, and
-          how AI prototyping strengthens her design process.
-        </p>
-      </section>
-
-      <section id="contact" class="section contact">
-        <p class="eyebrow">Contact</p>
-        <div class="contact-grid">
-          <a href="mailto:zjavbxjlove@naver.com">zjavbxjlove@naver.com</a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href="https://www.yoonjinam.design/" target="_blank" rel="noreferrer">yoonjinam.design</a>
-          <span>Seoul, South Korea</span>
+      <section id="contact" class="split-section">
+        <div class="wrap" style="display: block;">
+          <div style="display: flex; flex-wrap: wrap; gap: clamp(28px, 5vw, 88px);">
+            <div class="split-label-col">
+              <div class="section-index">05&nbsp; Contact</div>
+              <h2 data-anim="head">Contact</h2>
+            </div>
+            <div class="split-content-col">
+              <h3 class="contact-heading" data-anim="head">Good experiences start with good questions.<br />Let's talk.</h3>
+              <a class="btn-contact" href="mailto:zjavbxjlove@naver.com" data-magnetic>zjavbxjlove@naver.com <span>↗</span></a>
+              <div class="contact-location">
+                <span>Seoul, South Korea</span>
+              </div>
+            </div>
+          </div>
+          <div class="contact-visual">
+            <div data-dither="foot"></div>
+          </div>
+          <div class="contact-legal">
+            <span>Yoonji Nam · Product Designer</span>
+            <span>Seoul, Korea</span>
+            <span>© 2026</span>
+          </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <p>Yoonji Nam, Product Designer</p>
-      <a href="#top">Back to top</a>
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>Yoonji Nam, Product Designer</p>
+        <a href="#about">Back to top</a>
+      </div>
     </footer>
 
+    <div id="case-overlay"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="work-data.js"></script>
+    <script src="case-overlay.js" defer></script>
+    <script src="motion.js" defer></script>
+    <script src="cursor-fx.js" defer></script>
     <script src="chat.js" defer></script>
-    <script src="scroll-reveal.js" defer></script>
   </body>
 </html>

@@ -8,3 +8,8 @@ node_modules/
 *-draft.html
 *-draft.css
 *-draft.js
+
+# Claude Design source files (reference only - content is ported into
+# work-data.js / styles.css / index.html, not served directly)
+ClaudeDesign_project/
+Yoonji Nam Portfolio.html

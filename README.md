@@ -1,56 +1,41 @@
-# Yoonji Nam Portfolio Template
+# Yoonji Nam Portfolio
 
-Minimal static portfolio template for a Seoul-based product designer seeking a full-time role.
+Single-page portfolio for Yoonji Nam, a Seoul-based product designer,
+rebuilt from a Claude Design v2 mockup on a plain HTML/CSS/vanilla-JS
+stack (no build step, no framework) with an AI chat "Agent" feature.
 
 ## Files
 
-- `index.html` contains the homepage, project cards, resume section, about section, and contact information.
-- `case-study.html` is the reusable detail page that every project card can link to.
-- `styles.css` contains the visual system, responsive layout, and point color.
-- `SKILLS.md` gives AI assistants project-specific guidance for editing the portfolio.
-- `design-tokens.json` stores the core colors, typography, radius, and layout tokens.
-- `design-system.json` describes the portfolio components and asset rules in structured form.
-- `images/` is where all portfolio images, screenshots, prototypes, and 3D animation assets should go.
-- `icons/` is where all local SVG or image icons should go.
+- `index.html` — the whole site: header, hero, About, How I Work, Impact
+  stats, Works grids, Experience/Resume, Contact.
+- `styles.css` — the ink/paper design system (see `SKILLS.md`), layout,
+  and responsive rules.
+- `work-data.js` — case-study content (one object per project: facts,
+  metrics, narrative sections). Edit this to add or update a project.
+- `case-overlay.js` — renders the work-card grids from `work-data.js` and
+  the full-screen case-study detail overlay (click a card to open it).
+- `motion.js` — GSAP scroll reveals, KPI count-up, scroll progress bar,
+  and the light/dark invert toggle.
+- `cursor-fx.js` — custom cursor ring/dot and magnetic-button hover
+  effect (desktop pointer only).
+- `chat.js` / `api/chat.js` / `chat-context.md` — the "Agent" chat panel.
+  `chat-context.md` is the single source of information the AI answers
+  from; edit that file to change what it knows, not the code.
+- `SKILLS.md` — project-specific guidance for AI assistants editing this
+  portfolio (design tokens, case-study data pattern, editing checklist).
+- `vercel.json` / `package.json` — deployment config for the `/api/chat`
+  serverless function.
 
-## What to Replace
+## Local development
 
-- `yoonji.nam@example.com` with Yoonji's real email.
-- LinkedIn and website URLs in the contact section.
-- Resume PDF link in the resume section.
-- Hero placeholder with a 3D interactive animation, such as a small WebGL scene, Spline embed, or product-process interaction.
-- Project card placeholders with product screenshots or prototype previews.
-- Case study hero placeholder with the product screen or final feature mockup.
-- Process placeholders with AI prototyping artifacts, flow maps, prompt snippets, before-after screens, or usability notes.
-- Case study text with a real product, real design decisions, and measurable outcomes where available.
-
-## Asset Folders
-
-Store all images in:
-
-`/Users/username/Desktop/AI Prototyping Studio/images/`
-
-Store all icons in:
-
-`/Users/username/Desktop/AI Prototyping Studio/icons/`
-
-When adding images or icons to HTML or CSS, use relative paths:
-
-```html
-<img src="images/project-preview.png" alt="Project preview" />
-<img src="icons/arrow-up-right.svg" alt="" aria-hidden="true" />
+```bash
+python3 -m http.server 8090
 ```
 
-Do not use external image URLs or remote icon libraries for this template. Add the asset to the project folder first, then reference it locally.
+`api/chat.js` needs a real deploy (or `vercel dev`) to run — a plain
+static server can preview everything else but not the chat responses.
 
-## Image Guidance
+## Deploying
 
-Use crisp product screenshots and process artifacts. Keep the imagery quiet and clear: before state, prototype iterations, final feature, and evidence of impact.
-
-## Case Studies
-
-The homepage includes four project cards. Keep three if Yoonji has three strong projects, or keep all four if the fourth adds a distinct skill. Duplicate `case-study.html` for each real project and update each card link.
-
-## Point Color
-
-The template uses a muted plum as the point color. To change it, edit `--point`, `--point-dark`, and `--point-soft` in `styles.css`, then keep `design-tokens.json` in sync.
+Push to `main`; Vercel auto-deploys. `ANTHROPIC_API_KEY` must be set in
+the Vercel project's environment variables for `/api/chat` to work.

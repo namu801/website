@@ -8,47 +8,53 @@ This site represents Yoonji Nam, a product designer in Seoul, South Korea who is
 
 ## Design Direction
 
-- Keep the interface minimal, editorial, and sophisticated.
-- Use white as the primary page background.
-- Use the muted plum point color from `design-tokens.json`.
-- Avoid orange, loud gradients, decorative blobs, and overly bold typography.
-- Keep case study cards visually consistent and equal in size.
-- Use clear product screenshots, process artifacts, and prototype images instead of decorative stock imagery.
+As of the v2 redesign (ported from a Claude Design mockup), the site uses a
+monochrome ink/paper system, not the original muted-plum template:
+
+- Two tokens carry the whole palette: `--paper` (background) and `--ink`
+  (foreground), plus muted variants `--ts-paper`/`--ts-ink`,
+  `--line-paper`/`--line-ink`, and `--fill`/`--paper-2` — defined in
+  `styles.css`. Sections alternate ink-background and paper-background
+  deliberately (hero, Impact, Experience = ink; About, Approach, Works,
+  Contact = paper) — keep that alternation when adding sections.
+- A global light/dark **invert** toggles by swapping those custom
+  properties under `html[data-invert="1"]` (see `motion.js`). Any new
+  section should use the existing tokens, not hardcoded colors, so invert
+  keeps working.
+- Typography is Pretendard (loaded via jsdelivr in `index.html`), bold
+  headings, generous line-height on body copy.
+- Backgrounds for project imagery are the CSS-only "dither" dot pattern
+  (`[data-dither]` in `styles.css`) — no image assets. Keep using it for
+  placeholders until real product screenshots replace them.
+- Motion (GSAP scroll reveals, KPI count-up, custom cursor, magnetic
+  buttons) lives in `motion.js` / `cursor-fx.js`, gated behind
+  `prefers-reduced-motion` and `(pointer: fine)` respectively — don't
+  remove those guards.
+
+## Case Studies
+
+Case-study content is data, not separate HTML pages. Each project lives as
+one object in `work-data.js` (`WORKS` array) with `facts`, `metrics`, and
+`secs` (narrative sections). `case-overlay.js` renders the work-card grids
+on the homepage and the full-screen detail overlay from that data — to
+add or edit a case study, edit `work-data.js` only. Each entry should
+cover:
+
+- The existing product or flow, and the problem/friction.
+- The approach taken.
+- The measurable or qualitative outcome.
+
+Prefer concrete evidence over generic claims: before-after states, ratings,
+percentages, awards, or field-research counts (see existing entries in
+`work-data.js` for the expected level of specificity).
 
 ## Asset Rules
 
-Only use images and icons that live inside this project folder.
-
-- Images must be stored in `/Users/username/Desktop/AI Prototyping Studio/images/`.
-- Icons must be stored in `/Users/username/Desktop/AI Prototyping Studio/icons/`.
-- Do not link to external image URLs.
-- Do not use icons from a CDN or remote icon library unless the icon file has been added to the local `icons` folder first.
-- When referencing local assets in HTML or CSS, use relative paths from the file being edited.
-
-Examples:
-
-```html
-<img src="images/case-study-hero.png" alt="Final AI-prototyped feature screen" />
-<img src="icons/arrow-up-right.svg" alt="" aria-hidden="true" />
-```
-
-```css
-.project-preview {
-  background-image: url("images/project-preview.png");
-}
-```
-
-## Case Study Guidance
-
-Each case study should explain:
-
-- The existing product or flow.
-- The user problem or product friction.
-- How Yoonji used AI prototyping to explore solutions.
-- The feature or interaction she designed.
-- What improved for users, stakeholders, or the product team.
-
-Prefer concrete evidence over generic claims. Useful evidence includes before-after screens, user quotes, usability findings, faster prototype cycles, reduced task steps, or product metrics.
+No local `images/`/`icons/` folders are in active use — all current
+imagery is the CSS dither-pattern placeholder (see Design Direction
+above). If real screenshots are added later, store them inside this
+project folder and reference them with a relative path from the file
+being edited; do not link to external image URLs.
 
 ## Resume Guidance
 
@@ -58,8 +64,10 @@ The resume section should stay concise. Prioritize full-time roles, product scop
 
 Before finishing any AI-generated update:
 
-- Confirm all image paths point to `images/`.
-- Confirm all icon paths point to `icons/`.
+- Confirm colors come from the `--paper`/`--ink`/`--ts-*`/`--line-*`/`--fill`
+  tokens in `styles.css`, not hardcoded hex values, so `data-invert` keeps
+  working.
 - Confirm placeholder copy still tells Yoonji what to add.
-- Confirm the site does not introduce beige backgrounds or orange accents.
-- Confirm typography remains light and polished.
+- Confirm case-study edits went into `work-data.js`, not new HTML pages.
+- Confirm `prefers-reduced-motion` and `(pointer: fine)` guards in
+  `motion.js`/`cursor-fx.js` are still respected by any new animation.
