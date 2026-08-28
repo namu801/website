@@ -1410,12 +1410,12 @@ html.no-agent .overlay {
    the whole panel without touching those rules. */
 
 .chat-panel {
-  --paper: #121214;
-  --paper-2: #1c1c1f;
-  --ink: #f5f4f2;
-  --ts-paper: #9a9a9a;
-  --ts-ink: #9a9a9a;
-  --line-paper: #313134;
+  --paper: #1e1e1e;
+  --paper-2: #363636;
+  --ink: #f5f5f3;
+  --ts-paper: #adadad;
+  --ts-ink: #adadad;
+  --line-paper: #4a4a4a;
 
   flex: 0 0 var(--chat-width);
   width: var(--chat-width);
