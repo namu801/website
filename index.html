@@ -16,6 +16,8 @@
     <div class="cursor-ring" data-cursor-ring></div>
     <div class="cursor-dot" data-cursor-dot></div>
 
+    <div class="page-shell">
+    <div class="page-content">
     <header class="site-header">
       <div class="wrap">
         <div class="brand-group">
@@ -29,15 +31,10 @@
             <a href="#work">Works</a>
             <a href="#experience">Experience</a>
           </nav>
-          <button type="button" class="pill-btn" data-invert-toggle aria-label="Invert theme">
-            <span class="dot"></span>
-            <span data-invert-label>Invert</span>
-          </button>
           <button
             class="chat-toggle"
             type="button"
-            aria-haspopup="dialog"
-            aria-expanded="false"
+            aria-expanded="true"
             aria-controls="chat-panel"
             aria-label="AI 어시스턴트에게 Yoonji에 대해 물어보기"
           >
@@ -49,43 +46,6 @@
         </div>
       </div>
     </header>
-
-    <div class="chat-backdrop" id="chat-backdrop" hidden></div>
-
-    <aside id="chat-panel" class="chat-panel" role="dialog" aria-modal="true" aria-label="Yoonji에 대해 물어보기" hidden>
-      <div class="chat-panel-header">
-        <p>Yoonji에게 물어보세요</p>
-        <button class="chat-close" type="button" aria-label="채팅 닫기">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M1 1 13 13M13 1 1 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
-          </svg>
-        </button>
-      </div>
-
-      <div class="chat-messages" id="chat-messages">
-        <div class="chat-bubble chat-bubble-assistant">안녕하세요, 저는 Yoonji의 이력과 작업 내용을 바탕으로 답하는 AI 어시스턴트예요. 배경, 작업 방식, 이직 가능 여부 등 무엇이든 물어보세요.</div>
-      </div>
-
-      <div class="chat-chips" id="chat-chips">
-        <button type="button" class="chat-chip" data-action="scroll" data-target="#work">작업물부터 볼까요? ↓</button>
-        <button type="button" class="chat-chip" data-action="ask" data-question="디자인할 때 뭘 가장 중요하게 생각해요?">디자인할 때 뭘 중요하게 생각해요?</button>
-        <button type="button" class="chat-chip" data-action="ask" data-question="평소에 어떤 툴을 써요?">평소에 어떤 툴을 써요?</button>
-        <button type="button" class="chat-chip" data-action="ask" data-question="지금 이직 가능한 상태예요?">지금 이직 가능한 상태예요?</button>
-        <button type="button" class="chat-chip" data-action="link" data-target="Resume_YoonjiNam.pdf">이력서 볼 수 있어요? ↗</button>
-        <button type="button" class="chat-chip" data-action="scroll" data-target="#contact">연락은 어떻게 하면 돼요? ↓</button>
-      </div>
-
-      <a class="chat-contact-hint" href="mailto:zjavbxjlove@naver.com">직접 문의: zjavbxjlove@naver.com</a>
-
-      <form class="chat-input-row" id="chat-form">
-        <input type="text" id="chat-input" placeholder="Yoonji에 대해 물어보세요..." autocomplete="off" aria-label="Yoonji에 대해 물어보기" />
-        <button type="submit" aria-label="전송">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </button>
-      </form>
-    </aside>
 
     <main>
       <section class="hero">
@@ -395,6 +355,43 @@
         <a href="#about">Back to top</a>
       </div>
     </footer>
+    </div>
+
+    <aside id="chat-panel" class="chat-panel" aria-label="Yoonji에 대해 물어보기">
+      <div class="chat-panel-header">
+        <p>Yoonji에게 물어보세요</p>
+        <button class="chat-close" type="button" aria-label="채팅 닫기">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M1 1 13 13M13 1 1 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="chat-messages" id="chat-messages">
+        <div class="chat-bubble chat-bubble-assistant">안녕하세요, 저는 Yoonji의 이력과 작업 내용을 바탕으로 답하는 AI 어시스턴트예요. 배경, 작업 방식, 이직 가능 여부 등 무엇이든 물어보세요.</div>
+      </div>
+
+      <div class="chat-chips" id="chat-chips">
+        <button type="button" class="chat-chip" data-action="scroll" data-target="#work">작업물부터 볼까요? ↓</button>
+        <button type="button" class="chat-chip" data-action="ask" data-question="디자인할 때 뭘 가장 중요하게 생각해요?">디자인할 때 뭘 중요하게 생각해요?</button>
+        <button type="button" class="chat-chip" data-action="ask" data-question="평소에 어떤 툴을 써요?">평소에 어떤 툴을 써요?</button>
+        <button type="button" class="chat-chip" data-action="ask" data-question="지금 이직 가능한 상태예요?">지금 이직 가능한 상태예요?</button>
+        <button type="button" class="chat-chip" data-action="link" data-target="Resume_YoonjiNam.pdf">이력서 볼 수 있어요? ↗</button>
+        <button type="button" class="chat-chip" data-action="scroll" data-target="#contact">연락은 어떻게 하면 돼요? ↓</button>
+      </div>
+
+      <a class="chat-contact-hint" href="mailto:zjavbxjlove@naver.com">직접 문의: zjavbxjlove@naver.com</a>
+
+      <form class="chat-input-row" id="chat-form">
+        <input type="text" id="chat-input" placeholder="Yoonji에 대해 물어보세요..." autocomplete="off" aria-label="Yoonji에 대해 물어보기" />
+        <button type="submit" aria-label="전송">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </form>
+    </aside>
+    </div>
 
     <div id="case-overlay"></div>
 

@@ -1,7 +1,6 @@
 (() => {
   const toggle = document.querySelector(".chat-toggle");
   const panel = document.getElementById("chat-panel");
-  const backdrop = document.getElementById("chat-backdrop");
   const closeBtn = document.querySelector(".chat-close");
   const messagesEl = document.getElementById("chat-messages");
   const chipsEl = document.getElementById("chat-chips");
@@ -39,14 +38,12 @@
 
   function openPanel() {
     panel.hidden = false;
-    backdrop.hidden = false;
     toggle.setAttribute("aria-expanded", "true");
     input.focus();
   }
 
   function closePanel() {
     panel.hidden = true;
-    backdrop.hidden = true;
     toggle.setAttribute("aria-expanded", "false");
   }
 
@@ -54,7 +51,6 @@
     panel.hidden ? openPanel() : closePanel();
   });
   closeBtn.addEventListener("click", closePanel);
-  backdrop.addEventListener("click", closePanel);
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !panel.hidden) closePanel();
   });
@@ -123,7 +119,6 @@
     const target = chip.dataset.target;
 
     if (action === "scroll") {
-      closePanel();
       document.querySelector(target)?.scrollIntoView({ behavior: "smooth" });
     } else if (action === "link") {
       window.open(target, "_blank", "noreferrer");

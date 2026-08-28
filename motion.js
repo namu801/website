@@ -1,38 +1,6 @@
 (() => {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  function initInvertToggle() {
-    const html = document.documentElement;
-    const toggle = document.querySelector("[data-invert-toggle]");
-    const label = document.querySelector("[data-invert-label]");
-    if (!toggle) return;
-
-    let saved = null;
-    try {
-      saved = localStorage.getItem("yn-v2-invert");
-    } catch (e) {}
-    if (saved === "1") html.setAttribute("data-invert", "1");
-
-    function sync() {
-      const inverted = html.getAttribute("data-invert") === "1";
-      if (label) label.textContent = inverted ? "Light" : "Invert";
-    }
-    sync();
-
-    toggle.addEventListener("click", () => {
-      const next = html.getAttribute("data-invert") === "1" ? "0" : "1";
-      if (next === "1") {
-        html.setAttribute("data-invert", "1");
-      } else {
-        html.removeAttribute("data-invert");
-      }
-      try {
-        localStorage.setItem("yn-v2-invert", next);
-      } catch (e) {}
-      sync();
-    });
-  }
-
   function initScrollProgress() {
     const bar = document.querySelector("[data-progress]");
     if (!bar) return;
@@ -184,7 +152,6 @@
   }
 
   function boot() {
-    initInvertToggle();
     initScrollProgress();
     initKpis();
     if (window.gsap) {

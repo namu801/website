@@ -11,18 +11,6 @@
   --shadow: 0 24px 70px rgba(10, 10, 10, 0.14);
 }
 
-html[data-invert="1"] {
-  --paper: #0a0a0a;
-  --paper-2: #171717;
-  --ink: #ffffff;
-  --ink-2: #f1f0ed;
-  --ts-paper: #8e8e8e;
-  --ts-ink: #5f5f5f;
-  --line-paper: #262626;
-  --line-ink: #d8d5ce;
-  --fill: #1e1e1e;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -257,46 +245,6 @@ p {
   .nav {
     display: none;
   }
-}
-
-.pill-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  flex: none;
-  min-height: 44px;
-  padding: 0 16px;
-  background: transparent;
-  border: 1px solid var(--line-ink);
-  border-radius: 999px;
-  font-family: inherit;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--paper);
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-}
-
-.pill-btn:hover {
-  background: var(--paper);
-  color: var(--ink);
-  border-color: var(--paper);
-}
-
-.pill-btn .dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: linear-gradient(90deg, var(--paper) 0 50%, transparent 50% 100%);
-  border: 1px solid var(--paper);
-  flex: none;
-}
-
-.pill-btn:hover .dot {
-  background: linear-gradient(90deg, var(--ink) 0 50%, transparent 50% 100%);
-  border-color: var(--ink);
 }
 
 .chat-toggle {
@@ -973,7 +921,7 @@ p {
 .overlay {
   position: fixed;
   inset: 0;
-  z-index: 950;
+  z-index: 980;
   background: var(--paper);
   color: var(--ink);
   overflow-y: auto;
@@ -1421,31 +1369,53 @@ p {
   margin: 0;
 }
 
-/* ---------- Chat panel ---------- */
+/* ---------- Page shell: docked chat panel, not an overlay ----------
+   The site and the chat panel sit side by side. Opening/closing the
+   panel resizes the page content instead of dimming it. */
 
-.chat-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 960;
-  background: rgba(10, 10, 10, 0.4);
+.page-shell {
+  display: flex;
+  align-items: stretch;
+  min-height: 100vh;
 }
 
+.page-content {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ---------- Chat panel ---------- */
+
 .chat-panel {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 961;
+  flex: 0 0 380px;
+  width: 380px;
   flex-direction: column;
-  width: min(400px, 100%);
   background: var(--paper);
   color: var(--ink);
   border-left: 1px solid var(--line-paper);
-  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  height: 100vh;
 }
 
 .chat-panel:not([hidden]) {
   display: flex;
+}
+
+@media (max-width: 860px) {
+  .page-shell {
+    display: block;
+  }
+
+  .chat-panel {
+    position: fixed;
+    inset: 0;
+    z-index: 970;
+    width: 100%;
+    height: 100%;
+    box-shadow: var(--shadow);
+  }
 }
 
 .chat-panel-header {
