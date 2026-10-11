@@ -16,14 +16,17 @@
     const items = document.querySelectorAll("[data-kpi]");
     if (!items.length) return;
 
+    const format = (v, dec) =>
+      v.toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+
     items.forEach((el) => {
       const target = parseFloat(el.dataset.kpi);
       const dec = parseInt(el.dataset.dec || "0", 10);
-      el.textContent = (0).toFixed(dec);
+      el.textContent = format(0, dec);
 
       const run = () => {
         if (reduceMotion || !window.gsap) {
-          el.textContent = target.toFixed(dec);
+          el.textContent = format(target, dec);
           return;
         }
         const o = { v: 0 };
@@ -32,7 +35,7 @@
           duration: 2,
           ease: "power2.out",
           onUpdate: () => {
-            el.textContent = o.v.toFixed(dec);
+            el.textContent = format(o.v, dec);
           },
         });
       };
