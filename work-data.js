@@ -56,7 +56,7 @@ const WORKS = [
     role: "UXUI 디자이너 (메인 레이아웃 설계, 지도 인터랙션·예외 상태 정의, 실차 테스트 참여) — 디자이너 2인 체제",
     ty: "웹 (관리자 시스템)",
     slug: "pbv-content-location-targeting",
-    images: [],
+    images: ["images/pbv-content-location-targeting/CMSgps_01.png"],
     sum: "이동하는 차량에서 광고가 정해진 위치에서만 재생되도록, 지도 위에서 재생 위치와 반경을 설정하는 기능을 설계했습니다.",
     tags: ["Mobility", "B2B Admin", "Map Interaction", "State Design"],
     facts: [
@@ -78,7 +78,7 @@ const WORKS = [
     role: "UXUI 디자이너 (플로우·정보구조 설계, 1·2차 UI, 협력사 커뮤니케이션)",
     ty: "모바일 (태블릿)",
     slug: "driver-passenger-control-pad",
-    images: [],
+    images: ["images/driver-passenger-control-pad/CPD_01.png"],
     sum: "운전자와 탑승객이 각자 쓰는 PBV 제어 앱을 설계했습니다. 안전과 편의라는 서로 다른 요구를 권한 분리로 정리했습니다.",
     tags: ["Mobility", "Tablet App", "Cross-Device"],
     facts: [
@@ -143,7 +143,7 @@ const WORKS = [
     role: "전시 공간·콘텐츠 기획 총괄, 협력사·현장 리드",
     ty: "전시 (공간, 영상, VR, 웹)",
     slug: "k-display-2024",
-    images: [],
+    images: ["images/k-display-2024/Kdisplay_01.png"],
     sum: "회사의 첫 대외 전시를 총괄하며, 관람객이 PBV를 직접 체험하는 전시 공간과 콘텐츠를 기획했습니다.",
     tags: ["Exhibition", "Mobility", "Space UX", "VR"],
     facts: [
@@ -162,7 +162,7 @@ const WORKS = [
     role: "프로젝트 리드 (콘텐츠 기획, 영상·모션 디자인, 대행사 커뮤니케이션, 계약 관리, 현장 운영)",
     ty: "전시 (차량 내외부 영상, 인터랙티브 콘텐츠)",
     slug: "world-smart-city-expo-2025",
-    images: [],
+    images: ["images/world-smart-city-expo-2025/WSCE_01.png"],
     sum: "LH 모빌리티존의 PBV 체험 콘텐츠를 기획하고 전시 운영을 이끌었습니다.",
     tags: ["Exhibition", "Mobility", "Interactive Content"],
     facts: [
