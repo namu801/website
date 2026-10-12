@@ -1189,102 +1189,6 @@ html.no-agent .overlay {
   color: var(--ts-paper);
 }
 
-.overlay-detail-band {
-  max-width: 1140px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: clamp(20px, 5vw, 80px);
-  padding: 0 clamp(18px, 4vw, 48px);
-}
-
-.overlay-detail-nav {
-  flex: 0 1 200px;
-  min-width: 160px;
-  position: sticky;
-  top: 92px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2px;
-  padding-top: clamp(46px, 7vh, 86px);
-}
-
-.overlay-detail-nav button {
-  padding: 7px 0;
-  background: none;
-  border: 0;
-  font-family: inherit;
-  font-size: 13px;
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-  text-align: left;
-  color: var(--ts-paper);
-  font-weight: 500;
-}
-
-.overlay-detail-nav button:hover {
-  opacity: 0.6;
-}
-
-.overlay-detail-nav button.active {
-  color: var(--ink);
-  font-weight: 700;
-}
-
-@media (max-width: 900px) {
-  .overlay-detail-nav {
-    position: static;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 6px 18px;
-    padding-bottom: 4px;
-  }
-}
-
-.overlay-sections {
-  flex: 1 1 520px;
-  min-width: 280px;
-  padding-bottom: clamp(46px, 7vh, 86px);
-}
-
-.overlay-sec {
-  padding: clamp(46px, 7vh, 86px) 0;
-  border-top: 1px solid var(--line-paper);
-}
-
-.overlay-sec:first-child {
-  border-top: none;
-}
-
-.overlay-sec .label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ts-paper);
-}
-
-.overlay-sec h3 {
-  margin: 16px 0 0;
-  max-width: 760px;
-  font-size: clamp(21px, 2.5vw, 31px);
-  font-weight: 800;
-  line-height: 1.3;
-  letter-spacing: -0.03em;
-  text-wrap: balance;
-}
-
-.overlay-sec p {
-  margin: clamp(16px, 2.6vh, 24px) 0 0;
-  max-width: 760px;
-  font-size: 15px;
-  line-height: 1.9;
-  color: var(--ts-paper);
-  text-wrap: pretty;
-}
-
 .overlay-more-band {
   background: var(--ink);
   color: var(--paper);
@@ -1628,10 +1532,6 @@ html.no-agent .overlay {
 @media (max-width: 860px) {
   .split-section .wrap,
   #experience .wrap {
-    flex-direction: column;
-  }
-
-  .overlay-detail-band {
     flex-direction: column;
   }
 }

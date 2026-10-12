@@ -49,15 +49,13 @@
   // ---- Overlay ----
   const root = document.getElementById("case-overlay");
   let activeIndex = null;
-  let activeSecIndex = 0;
-  let scrollObserver = null;
 
   function buildOverlaySkeleton() {
     root.innerHTML = `
       <div class="overlay" role="dialog" aria-modal="true" hidden>
         <div class="overlay-topbar">
           <div class="wrap">
-            <button type="button" class="overlay-back" data-close><span>←</span> Back</button>
+            <button type="button" class="overlay-back" data-close><span>←</span> 뒤로</button>
             <span class="overlay-brand">YOONJI NAM</span>
             <span class="overlay-count" data-count></span>
           </div>
@@ -74,7 +72,7 @@
         </div>
         <div class="overlay-body-band">
           <div class="overlay-body-label">
-            <div class="section-index">Overview</div>
+            <div class="section-index">개요</div>
           </div>
           <div class="overlay-body-content">
             <div data-facts></div>
@@ -82,17 +80,13 @@
           </div>
         </div>
         <div data-gallery></div>
-        <div class="overlay-detail-band">
-          <nav class="overlay-detail-nav" data-secnav></nav>
-          <div class="overlay-sections" data-sections></div>
-        </div>
         <div class="overlay-more-band">
           <div class="inner">
-            <div class="overlay-more-label">More case studies</div>
+            <div class="overlay-more-label">다른 작업물</div>
             <div class="overlay-more-grid" data-more></div>
           </div>
           <div class="back-row">
-            <button type="button" data-close>← Back to all works</button>
+            <button type="button" data-close>← 전체 작업물로</button>
           </div>
         </div>
       </div>
@@ -103,7 +97,7 @@
     const w = WORKS[i];
     const panel = root.querySelector(".overlay");
 
-    panel.querySelector("[data-count]").textContent = `Project ${String(i + 1).padStart(2, "0")} / ${String(WORKS.length).padStart(2, "0")}`;
+    panel.querySelector("[data-count]").textContent = `프로젝트 ${String(i + 1).padStart(2, "0")} / ${String(WORKS.length).padStart(2, "0")}`;
     panel.querySelector("[data-cat]").textContent = w.cat;
     panel.querySelector("[data-title]").textContent = w.t;
     panel.querySelector("[data-summary]").textContent = w.sum;
@@ -115,10 +109,10 @@
       `<span class="year">${w.y}</span>` + w.tags.map((t) => `<span class="tag">${t}</span>`).join("");
 
     panel.querySelector("[data-quickfacts]").innerHTML = `
-      <div><div class="k">Year</div><div class="v">${w.y}</div></div>
-      <div><div class="k">Company</div><div class="v">${w.co}</div></div>
-      <div><div class="k">Role</div><div class="v">${w.role}</div></div>
-      <div><div class="k">Type</div><div class="v">${w.ty}</div></div>
+      <div><div class="k">연도</div><div class="v">${w.y}</div></div>
+      <div><div class="k">회사</div><div class="v">${w.co}</div></div>
+      <div><div class="k">역할</div><div class="v">${w.role}</div></div>
+      <div><div class="k">유형</div><div class="v">${w.ty}</div></div>
     `;
 
     panel.querySelector("[data-facts]").innerHTML = w.facts
@@ -127,23 +121,6 @@
 
     panel.querySelector("[data-metrics]").innerHTML = w.metrics
       .map((m) => `<div><div class="n">${m.n}</div><div class="c">${m.c}</div></div>`)
-      .join("");
-
-    panel.querySelector("[data-secnav]").innerHTML = w.secs
-      .map((s, k) => `<button type="button" data-sec-index="${k}">${s.l}</button>`)
-      .join("");
-
-    panel.querySelector("[data-sections]").innerHTML = w.secs
-      .map(
-        (s) => `
-      <div class="overlay-sec" data-sec>
-        <div class="label">${s.l}</div>
-        <h3>${s.h}</h3>
-        <p>${s.b}</p>
-        <p>${s.b2}</p>
-      </div>
-    `,
-      )
       .join("");
 
     const more = [1, 2].map((o) => WORKS[(i + o) % WORKS.length]);
@@ -161,37 +138,6 @@
     `,
       )
       .join("");
-
-    activeSecIndex = 0;
-    updateSecNav();
-    setupScrollSpy(panel);
-  }
-
-  function updateSecNav() {
-    root.querySelectorAll("[data-sec-index]").forEach((btn) => {
-      btn.classList.toggle("active", Number(btn.dataset.secIndex) === activeSecIndex);
-    });
-  }
-
-  function setupScrollSpy(panel) {
-    if (scrollObserver) scrollObserver.disconnect();
-    const secs = Array.from(panel.querySelectorAll("[data-sec]"));
-    if (!secs.length || !("IntersectionObserver" in window)) return;
-    scrollObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const idx = secs.indexOf(entry.target);
-            if (idx !== -1 && idx !== activeSecIndex) {
-              activeSecIndex = idx;
-              updateSecNav();
-            }
-          }
-        });
-      },
-      { root: panel, rootMargin: "-40% 0px -50% 0px", threshold: 0 },
-    );
-    secs.forEach((el) => scrollObserver.observe(el));
   }
 
   // Case studies are a real navigation state, not just a DOM toggle: opening
@@ -245,19 +191,6 @@
       const moreCard = event.target.closest("[data-more-index]");
       if (moreCard) {
         open(Number(moreCard.dataset.moreIndex));
-        return;
-      }
-      const secBtn = event.target.closest("[data-sec-index]");
-      if (secBtn) {
-        const idx = Number(secBtn.dataset.secIndex);
-        const target = root.querySelectorAll("[data-sec]")[idx];
-        const panel = root.querySelector(".overlay");
-        if (target && panel) {
-          panel.scrollTo({
-            top: panel.scrollTop + target.getBoundingClientRect().top - panel.getBoundingClientRect().top - 74,
-            behavior: "smooth",
-          });
-        }
         return;
       }
       if (event.target.closest("[data-close]")) {

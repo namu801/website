@@ -34,11 +34,12 @@ monochrome ink/paper system, not the original muted-plum template:
 ## Case Studies
 
 Case-study content is data, not separate HTML pages. Each project lives as
-one object in `work-data.js` (`WORKS` array) with `facts`, `metrics`, and
-`secs` (narrative sections). `case-overlay.js` renders the work-card grids
-on the homepage and the full-screen detail overlay from that data — to
-add or edit a case study, edit `work-data.js` only. Each entry should
-cover:
+one object in `work-data.js` (`WORKS` array) with `facts` (Background/
+Problem/Approach/Outcome) and `metrics`. `case-overlay.js` renders the
+work-card grids on the homepage and the full-screen detail overlay from
+that data — to add or edit a case study, edit `work-data.js` only. There
+is no separate narrative/"secs" section anymore; the Overview facts are
+the whole detail page. Each entry should cover:
 
 - The existing product or flow, and the problem/friction.
 - The approach taken.
