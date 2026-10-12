@@ -757,7 +757,7 @@ p {
 
 .exp-intro h2 {
   margin: 20px 0 0;
-  font-size: clamp(30px, 4.4vw, 60px);
+  font-size: clamp(23px, 2.9vw, 38px);
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.04em;
