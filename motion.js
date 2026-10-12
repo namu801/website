@@ -159,6 +159,27 @@
     initKpis();
     if (window.gsap) {
       initReveals();
+      // ScrollTrigger measures trigger positions as soon as initReveals()
+      // runs, but the Pretendard webfont swapping in (or anything else
+      // async) can still change the page's total height afterward — every
+      // trigger's start/end is now wrong, so content below the fold stays
+      // stuck at opacity:0 until something (like a window resize) forces a
+      // recalculation. Rather than guess which specific async event is to
+      // blame, watch the document's actual height and refresh whenever it
+      // changes, so this self-corrects regardless of the cause.
+      if (window.ScrollTrigger && "ResizeObserver" in window) {
+        let lastHeight = document.documentElement.scrollHeight;
+        let pending = null;
+        const ro = new ResizeObserver(() => {
+          const h = document.documentElement.scrollHeight;
+          if (h === lastHeight) return;
+          lastHeight = h;
+          clearTimeout(pending);
+          pending = setTimeout(() => window.ScrollTrigger.refresh(), 150);
+        });
+        ro.observe(document.body);
+        window.addEventListener("load", () => window.ScrollTrigger.refresh());
+      }
     } else {
       // GSAP loads from cdnjs before this file (see index.html) but guard
       // against slow/blocked network by falling back to visible content.
