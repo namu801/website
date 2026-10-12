@@ -44,7 +44,9 @@
 
 ## 스킬
 
-Figma, FigmaMake, XD, Sketch, Adobe CC, Notion, Confluence, Jira, Slack, AI 툴(Claude, Gemini, Midjourney, Kling), UX 리서치, 서비스 기획
+원래는 Figma를 주로 사용해 UX/UI 디자인 작업을 해왔다(FigmaMake, XD, Sketch, Adobe CC도 다룸).
+요즘에는 Claude, Gemini, Midjourney, Kling 같은 AI 툴을 업무에 적극적으로 활용해 생산성을 높이고 있다.
+그 외 협업 툴: Notion, Confluence, Jira, Slack. 그 외 역량: UX 리서치, 서비스 기획.
 
 ## 강점
 
