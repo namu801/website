@@ -13,3 +13,4 @@ node_modules/
 # work-data.js / styles.css / index.html, not served directly)
 ClaudeDesign_project/
 Yoonji Nam Portfolio.html
+.env*

@@ -194,20 +194,42 @@
     secs.forEach((el) => scrollObserver.observe(el));
   }
 
-  function open(i) {
+  // Case studies are a real navigation state, not just a DOM toggle: opening
+  // one pushes a #work/<slug> history entry so the browser's own back button
+  // (and deep links / refresh) work, instead of leaving the user stuck with
+  // a disabled back button inside a full-screen overlay.
+  function open(i, { pushHistory = true } = {}) {
     activeIndex = i;
     render(i);
     const panel = root.querySelector(".overlay");
     panel.hidden = false;
     panel.scrollTop = 0;
     document.body.style.overflow = "hidden";
+    if (pushHistory) {
+      const hash = `#work/${WORKS[i].slug}`;
+      if (location.hash !== hash) {
+        history.pushState({ work: i }, "", hash);
+      }
+    }
   }
 
-  function close() {
+  function close({ fromHistory = false } = {}) {
     const panel = root.querySelector(".overlay");
     panel.hidden = true;
     activeIndex = null;
     document.body.style.overflow = "";
+    if (!fromHistory && location.hash.startsWith("#work/")) {
+      history.replaceState({ work: null }, "", location.pathname + location.search);
+    }
+  }
+
+  function openFromHash() {
+    const match = location.hash.match(/^#work\/(.+)$/);
+    if (!match) return false;
+    const idx = WORKS.findIndex((w) => w.slug === match[1]);
+    if (idx === -1) return false;
+    open(idx, { pushHistory: false });
+    return true;
   }
 
   function init() {
@@ -246,6 +268,14 @@
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && activeIndex !== null) close();
     });
+
+    window.addEventListener("popstate", () => {
+      if (!openFromHash() && activeIndex !== null) {
+        close({ fromHistory: true });
+      }
+    });
+
+    openFromHash();
   }
 
   if (document.readyState === "loading") {
