@@ -7,7 +7,6 @@
   --ts-ink: #9a9a9a;
   --line-paper: #e2e0db;
   --line-ink: #2a2a2a;
-  --fill: #e6e3dc;
   --shadow: 0 24px 70px rgba(10, 10, 10, 0.14);
   --chat-width: 380px;
 }
@@ -160,7 +159,7 @@ p {
 }
 
 [data-dither="card"] {
-  background-color: var(--fill);
+  background-color: var(--ink-2);
 }
 
 /* ---------- Scroll-reveal hooks (motion.js / GSAP) ----------
@@ -712,6 +711,10 @@ p {
   font-weight: 800;
   line-height: 1.35;
   letter-spacing: -0.025em;
+  /* Reserves space for the longest title's worst-case wrap (3 lines) so
+     every card's tag row lands at the same height regardless of how many
+     lines its own title takes. */
+  min-height: 4.05em;
 }
 
 .work-card-year {
