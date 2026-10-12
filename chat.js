@@ -38,24 +38,34 @@
     return html.replace(/\n/g, "<br>");
   }
 
-  // Pulls a trailing [[work:slug]] marker (see chat-rules.md §5-7) out of an
-  // AI reply so it never flashes on screen mid-typewriter; the slug drives a
-  // "자세히 보기" button appended once typing finishes.
-  function extractWorkLink(text) {
-    const match = text.match(/\s*\[\[work:([a-z0-9-]+)\]\]\s*/);
-    if (!match) return { text, slug: null };
-    return { text: text.slice(0, match.index) + text.slice(match.index + match[0].length), slug: match[1] };
+  // Pulls every [[work:slug]] marker (see chat-rules.md §5-7) out of an AI
+  // reply so none ever flashes on screen mid-typewriter; each surviving slug
+  // drives a "자세히 보기" button appended once typing finishes. The model is
+  // told to use at most one, but this strips all of them defensively rather
+  // than leaving a stray un-stripped token visible if it doesn't. Only
+  // horizontal whitespace around the token is consumed (not \n) so a token
+  // sitting right before a paragraph break doesn't merge the two paragraphs.
+  function extractWorkLinks(text) {
+    const slugs = [];
+    const cleaned = text.replace(/[ \t]*\[\[work:([a-z0-9-]+)\]\][ \t]*/g, (_, slug) => {
+      slugs.push(slug);
+      return "";
+    });
+    return { text: cleaned, slugs: [...new Set(slugs)] };
   }
 
-  function appendWorkLinkButton(bubble, slug) {
-    const work = typeof WORKS !== "undefined" ? WORKS.find((w) => w.slug === slug) : null;
-    if (!work || typeof window.openWorkBySlug !== "function") return;
-    const link = document.createElement("button");
-    link.type = "button";
-    link.className = "chat-work-link";
-    link.textContent = `${work.t} 자세히 보기 →`;
-    link.addEventListener("click", () => window.openWorkBySlug(slug));
-    bubble.appendChild(link);
+  function appendWorkLinkButtons(bubble, slugs) {
+    if (typeof WORKS === "undefined" || typeof window.openWorkBySlug !== "function") return;
+    slugs.forEach((slug) => {
+      const work = WORKS.find((w) => w.slug === slug);
+      if (!work) return;
+      const link = document.createElement("button");
+      link.type = "button";
+      link.className = "chat-work-link";
+      link.textContent = `${work.t} 자세히 보기 →`;
+      link.addEventListener("click", () => window.openWorkBySlug(slug));
+      bubble.appendChild(link);
+    });
   }
 
   function typeOut(el, text, speed = 16) {
@@ -202,9 +212,9 @@
 
       stopOrb();
       pending.classList.remove("chat-bubble-thinking");
-      const { text: displayText, slug } = extractWorkLink(data.reply);
+      const { text: displayText, slugs } = extractWorkLinks(data.reply);
       await typeOut(pending, displayText);
-      if (slug) appendWorkLinkButton(pending, slug);
+      appendWorkLinkButtons(pending, slugs);
       history.push({ role: "assistant", content: data.reply });
     } catch (error) {
       stopOrb();
