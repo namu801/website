@@ -57,6 +57,15 @@
     if (event.key === "Escape" && !panel.hidden) closePanel();
   });
 
+  // Panel markup starts closed so narrow viewports (mobile browsers, app
+  // webviews) show the homepage first instead of a full-screen Agent panel
+  // (the chat-panel becomes a fixed full-screen overlay below 861px — see
+  // the matching breakpoint in styles.css). On wider viewports it opens as
+  // a docked sidebar by default, same as before.
+  if (window.matchMedia("(min-width: 861px)").matches) {
+    openPanel();
+  }
+
   function addBubble(role, text) {
     const bubble = document.createElement("div");
     bubble.className = `chat-bubble chat-bubble-${role}`;

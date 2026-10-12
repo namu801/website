@@ -242,7 +242,10 @@ p {
   opacity: 0.6;
 }
 
-@media (max-width: 768px) {
+/* Container query (not a viewport media query) because the available
+   width here depends on whether the Agent sidebar is docked open, not
+   just the window width — see container-type on .page-content. */
+@container page-content (max-width: 768px) {
   .nav {
     display: none;
   }
@@ -1415,6 +1418,8 @@ html.no-agent .overlay {
 .page-content {
   flex: 1 1 auto;
   min-width: 0;
+  container-type: inline-size;
+  container-name: page-content;
 }
 
 /* ---------- Chat panel ----------
@@ -1448,6 +1453,8 @@ html.no-agent .overlay {
   display: flex;
 }
 
+/* Keep this 860px cutoff in sync with the matchMedia check in chat.js,
+   which decides whether the panel opens by default on load. */
 @media (max-width: 860px) {
   .page-shell {
     display: block;
