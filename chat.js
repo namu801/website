@@ -6,6 +6,7 @@
   const chipsEl = document.getElementById("chat-chips");
   const form = document.getElementById("chat-form");
   const input = document.getElementById("chat-input");
+  const inputBeam = document.getElementById("chat-input-beam");
 
   if (!toggle || !panel) return;
 
@@ -40,12 +41,24 @@
   // resizing back up to desktop width doesn't fight an explicit close.
   let userClosed = false;
 
+  // One sweep of light around the input when the panel actually opens — a
+  // nudge to type, not a persistent loop. Re-triggerable: drop the class,
+  // force reflow, re-add it, so reopening the panel plays it again.
+  function playInputBeam() {
+    if (!inputBeam) return;
+    inputBeam.classList.remove("beam-intro");
+    void inputBeam.offsetWidth;
+    inputBeam.classList.add("beam-intro");
+  }
+
   function openPanel({ auto = false, focusInput = true } = {}) {
+    const wasHidden = panel.hidden;
     panel.hidden = false;
     document.documentElement.classList.remove("no-agent");
     toggle.setAttribute("aria-expanded", "true");
     if (!auto) userClosed = false;
     if (focusInput) input.focus();
+    if (wasHidden) playInputBeam();
   }
 
   function closePanel({ auto = false } = {}) {
@@ -93,6 +106,36 @@
     return bubble;
   }
 
+  // "생각 중" bubble: a small thinking-orbs canvas (see thinking-orb.js)
+  // next to the label, instead of the plain pulsing text it used to be.
+  function addThinkingBubble() {
+    const bubble = document.createElement("div");
+    bubble.className = "chat-bubble chat-bubble-assistant chat-bubble-thinking";
+
+    const canvas = document.createElement("canvas");
+    canvas.className = "thinking-orb";
+    bubble.appendChild(canvas);
+
+    const label = document.createElement("span");
+    label.textContent = "생각 중";
+    bubble.appendChild(label);
+
+    messagesEl.appendChild(bubble);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+
+    const orb =
+      window.ThinkingOrbs && typeof window.ThinkingOrbs.createThinkingOrb === "function"
+        ? window.ThinkingOrbs.createThinkingOrb(canvas, { state: "composing", size: 64, theme: "dark", ariaLabel: "생각 중" })
+        : null;
+    // Keep the 64px preset's dot density/speed tuning, just display it
+    // smaller — same technique the upstream demo uses for its hero pill
+    // (resolvePreset still sees size 64; only the CSS box shrinks).
+    canvas.style.width = "42px";
+    canvas.style.height = "42px";
+
+    return { bubble, stop: () => orb?.destroy() };
+  }
+
   async function sendMessage(text) {
     const trimmed = text.trim();
     if (!trimmed || busy) return;
@@ -101,8 +144,7 @@
     addBubble("user", trimmed);
     history.push({ role: "user", content: trimmed });
 
-    const pending = addBubble("assistant", "생각 중...");
-    pending.classList.add("chat-bubble-thinking");
+    const { bubble: pending, stop: stopOrb } = addThinkingBubble();
 
     try {
       const response = await fetch("/api/chat", {
@@ -120,10 +162,12 @@
         throw new Error(data.error || "Request failed");
       }
 
+      stopOrb();
       pending.classList.remove("chat-bubble-thinking");
       await typeOut(pending, data.reply);
       history.push({ role: "assistant", content: data.reply });
     } catch (error) {
+      stopOrb();
       pending.classList.remove("chat-bubble-thinking");
       pending.textContent =
         "죄송해요, 문제가 발생했어요. 다시 시도해주시거나 zjavbxjlove@naver.com으로 직접 연락해주세요.";

@@ -62,6 +62,24 @@ gallery inside the case-study detail page. A project with an empty
 Direction above) instead of a broken image — don't remove that
 fallback. Do not link to external image URLs.
 
+## Chat Agent
+
+`chat.js` drives the "Agent" panel; its "생각 중" bubble uses
+`thinking-orb.js`, a vendored vanilla-JS build of the canvas engine
+from the `thinking-orbs` npm package (MIT, by Jakub Antalik) — see the
+file's header comment for the source repo and license. That package
+ships a React component; `thinking-orb.js` is a framework-free rebuild
+of the same engine (no React, no build step at runtime) bundled once
+with esbuild from a local `vanilla.ts` entry point against a clone of
+the upstream repo. To change the orb's state/size, edit the
+`createThinkingOrb(canvas, { state, size, theme, ariaLabel })` call in
+`chat.js`'s `addThinkingBubble()` — valid states and the 64/20 size
+presets are documented in the upstream README. To pull in an upstream
+update, re-clone the repo, re-create `src/vanilla.ts` (wraps
+`resolvePreset` + `MODE_DRAWS` in plain DOM/canvas calls — no JSX), and
+re-bundle with `esbuild src/vanilla.ts --bundle --format=iife
+--global-name=ThinkingOrbs --outfile=thinking-orb.js`.
+
 ## Resume Guidance
 
 The resume section should stay concise. Prioritize full-time roles, product scope, shipped work, collaboration with PMs and engineers, and measurable design impact.
