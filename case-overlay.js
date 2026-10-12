@@ -49,6 +49,31 @@
   // ---- Overlay ----
   const root = document.getElementById("case-overlay");
   let activeIndex = null;
+  let factTriggers = [];
+
+  // Mirrors the Career section's highlight-underline reveal (motion.js,
+  // .exp-row .hl) for the Overview facts, which are injected fresh every
+  // time a case study opens — so this runs per-render instead of once at
+  // page load, and scrolls against the overlay panel itself (it has its
+  // own overflow-y:auto), not the window.
+  function animateFactHighlights(panel) {
+    factTriggers.forEach((t) => t.kill());
+    factTriggers = [];
+    const gsap = window.gsap;
+    if (!gsap || !window.ScrollTrigger) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    panel.querySelectorAll(".overlay-fact-row").forEach((row) => {
+      const hl = row.querySelectorAll(".hl");
+      if (!hl.length) return;
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: row, scroller: panel, start: "top 76%", end: "bottom 62%", scrub: 0.5 },
+      });
+      hl.forEach((el, k) => {
+        tl.fromTo(el, { backgroundSize: "0% 1px" }, { backgroundSize: "100% 1px", duration: 1, ease: "none" }, k * 1.4);
+      });
+      factTriggers.push(tl.scrollTrigger);
+    });
+  }
 
   function buildOverlaySkeleton() {
     root.innerHTML = `
@@ -118,6 +143,7 @@
     panel.querySelector("[data-facts]").innerHTML = w.facts
       .map((f) => `<div class="overlay-fact-row"><div class="k">${f.k}</div><div class="v">${f.v}</div></div>`)
       .join("");
+    animateFactHighlights(panel);
 
     panel.querySelector("[data-metrics]").innerHTML = w.metrics
       .map((m) => `<div><div class="n">${m.n}</div><div class="c">${m.c}</div></div>`)

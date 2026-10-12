@@ -843,19 +843,27 @@ p {
   margin-top: 14px;
 }
 
-.exp-row .hl {
-  color: var(--paper);
+.hl {
   font-weight: 600;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  background-image: linear-gradient(var(--paper), var(--paper));
   background-repeat: no-repeat;
   background-position: 0 1.15em;
   background-size: 0% 1px;
 }
 
+.exp-row .hl {
+  color: var(--paper);
+  background-image: linear-gradient(var(--paper), var(--paper));
+}
+
+.overlay-fact-row .hl {
+  color: var(--ink);
+  background-image: linear-gradient(var(--ink), var(--ink));
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .exp-row .hl {
+  .hl {
     background-size: 100% 1px;
   }
 }
