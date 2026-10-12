@@ -1561,7 +1561,6 @@ html.no-agent .overlay {
 
 .chat-input-row input:focus {
   outline: none;
-  border-color: var(--ink);
 }
 
 .chat-input-row button {
