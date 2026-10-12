@@ -711,10 +711,17 @@ p {
   font-weight: 800;
   line-height: 1.35;
   letter-spacing: -0.025em;
-  /* Reserves space for the longest title's worst-case wrap (3 lines) so
-     every card's tag row lands at the same height regardless of how many
-     lines its own title takes. */
-  min-height: 4.05em;
+  /* Clamped to exactly 2 lines (with a matching min-height) so every
+     card's tag row lands at the same height no matter how long its own
+     title is or how narrow its column gets — a min-height alone still
+     breaks once a title wraps past the reserved line count at some
+     viewport width. Longer titles truncate with an ellipsis; the full
+     title is still shown in the case-study detail page. */
+  min-height: 2.7em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .work-card-year {
