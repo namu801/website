@@ -11,7 +11,7 @@ const WORKS = [
     role: "UXUI 디자이너 (화면 구조·정보 체계 설계, 사용성 평가 기획·운영)",
     ty: "인포테인먼트 (55인치 디스플레이 3면)",
     slug: "pbv-passenger-infotainment-system",
-    images: [],
+    images: ["images/pbv-passenger-infotainment-system/Multi_01.png"],
     sum: "운전자 기준으로 만들어진 PBV 캐빈 화면을 탑승객 기준으로 재설계했습니다. 차량 데이터를 탑승객이 이해하는 문장으로 바꾸고, 측면 투명 디스플레이를 조작 화면으로 확장했습니다.",
     tags: ["Mobility", "Infotainment", "Multi-Display", "UX Writing"],
     facts: [
@@ -34,7 +34,7 @@ const WORKS = [
     role: "UXUI 디자이너 (정보구조 개편, 디자인 시스템 구축, 대시보드·차량 관리 설계, 기능 명세)",
     ty: "웹 (관리자 시스템)",
     slug: "pbv-content-management-system",
-    images: [],
+    images: ["images/pbv-content-management-system/CMSia_01.png"],
     sum: "기능이 나열돼 있던 PBV 콘텐츠 관리 시스템을 운영자의 업무 순서대로 재편하고, 전체 차량의 상태를 한 화면에서 판단하는 대시보드를 설계했습니다.",
     tags: ["Mobility", "B2B Admin", "Information Architecture", "Design System"],
     facts: [
@@ -97,7 +97,7 @@ const WORKS = [
     role: "UXUI 디자이너 (모바일·태블릿 UI 전체, 투표 정책 설계, 외부 에이전시 커뮤니케이션)",
     ty: "모바일, 태블릿",
     slug: "samsung-tech-fair-docent-app",
-    images: [],
+    images: ["images/samsung-tech-fair-docent-app/STF_01.png"],
     sum: "임직원 기술 전시의 도슨트 앱에 투표 기능을 새로 설계해, 작품을 보기만 하던 관람객이 반응하고 투표까지 참여하도록 개선했습니다.",
     tags: ["Exhibition", "Mobile App", "Voting UX", "UX Writing"],
     facts: [
@@ -268,7 +268,7 @@ const WORKS = [
     role: "공동 연구자 (가설 설계, 설문·실험, 정량·정성 분석, 논문 작성)",
     ty: "연구",
     slug: "hci-college-membership-cohort-2",
-    images: [],
+    images: ["images/hci-college-membership-cohort-2/AI_01.png"],
     sum: "AI 어시스턴트가 틀린 정보를 줄 때 사용자의 신뢰를 지키는 요소를 실험으로 검증해 한국HCI학회 논문으로 게재했습니다.",
     tags: ["HCI", "AI", "User Research", "Paper"],
     facts: [
