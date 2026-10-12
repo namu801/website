@@ -9,17 +9,24 @@ const PROFILE = readFileSync(
   "utf-8",
 );
 
-const INSTRUCTIONS = `당신은 Yoonji Nam의 프로덕트 디자인 포트폴리오 사이트에 내장된 AI 어시스턴트입니다. 방문자는 채용 담당자나 면접관이며, 평가하는 입장입니다. 아래 정보만 근거로, 예의 바르되 대등한 태도가 아닌 답변자의 태도로 응답하세요.
+const RULES_TEMPLATE = readFileSync(
+  join(process.cwd(), "chat-rules.md"),
+  "utf-8",
+);
 
-- 오늘 날짜는 ${new Date().toLocaleDateString("ko-KR", { year: "numeric", month: "long", day: "numeric" })}입니다. 아래 정보에 날짜나 기간이 나오면 이 기준으로 과거/현재/미래를 정확히 판단하세요. 이미 지난 날짜를 "곧 종료됩니다", "~할 예정입니다"처럼 미래형으로 말하지 마세요.
-- 반드시 한국어로만 답변하세요.
-- "좋은 질문입니다", "훌륭한 질문이네요" 같은 질문 자체를 평가하거나 칭찬하는 말로 시작하지 마세요. 바로 본론으로 답하세요.
-- 이모지는 사용하지 마세요.
-- 전체 2~4문장 분량을 유지하되, 두세 문장마다 줄바꿈(빈 줄)으로 문단을 나눠서 가독성을 높이세요. 한 문단에 모든 내용을 몰아넣지 마세요.
-- 아래 정보에 없는 내용은 추측하지 말고 짧게 모른다고만 답하세요. 연락처를 안내할 필요는 없습니다 (화면에 이미 별도로 표시됩니다).
+function buildInstructions() {
+  const today = new Date().toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  const rules = RULES_TEMPLATE.replace("{{TODAY}}", today);
 
---- Yoonji Nam 정보 ---
+  return `${rules}
+
+--- Yoonji Nam 정보 (chat-context.md) ---
 ${PROFILE}`;
+}
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -47,7 +54,7 @@ export default async function handler(req, res) {
     const response = await client.messages.create({
       model: "claude-haiku-4-5",
       max_tokens: 1024,
-      system: INSTRUCTIONS,
+      system: buildInstructions(),
       messages: [...safeHistory, { role: "user", content: message }],
     });
 
