@@ -655,6 +655,14 @@ p {
   column-gap: clamp(16px, 2.2vw, 30px);
   row-gap: clamp(34px, 5vh, 56px);
   padding-top: clamp(30px, 4vh, 44px);
+  /* Grid items default to align-items:stretch, which stretches every
+     .work-card in a row to match its tallest sibling (e.g. one with a
+     longer, wrapping tag list). Because .work-card is a <button>, the
+     browser's own UA layout for stretched buttons doesn't just pad the
+     bottom like a <div> would — it visibly shifted the card's own cover
+     image down by ~11px, misaligning it against unstretched siblings in
+     the same row. "start" stops the stretch outright. */
+  align-items: start;
 }
 
 @media (max-width: 1100px) {
@@ -727,6 +735,15 @@ p {
   line-height: 1.75;
   color: var(--ts-paper);
   text-wrap: pretty;
+  /* Clamped to exactly 2 lines, same reasoning as .work-card-meta h4:
+     reserves identical height regardless of tag-list length, so every
+     card in a row is the same height naturally (align-items: start
+     above stops misalignment, this stops ragged row bottoms). */
+  min-height: 3.5em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 /* Experience / Resume */
@@ -1188,7 +1205,12 @@ html.no-agent .overlay {
 .overlay-more-band {
   background: var(--ink);
   color: var(--paper);
-  padding: clamp(44px, 8vh, 88px) clamp(18px, 4vw, 48px);
+  /* Top padding doubled: this band's background-color change is meant to
+     read as "the project ended, here's other work" at a glance, but the
+     gap was too tight to register as a real section break. Only the top
+     changes — this sits after every project's last content band (gallery
+     or facts) regardless of how many images it has. */
+  padding: clamp(88px, 16vh, 176px) clamp(18px, 4vw, 48px) clamp(44px, 8vh, 88px);
 }
 
 .overlay-more-band .inner {
