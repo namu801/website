@@ -1,4 +1,12 @@
 {
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.yoonjinam.com" }],
+      "destination": "https://yoonjinam.com/$1",
+      "permanent": true
+    }
+  ],
   "functions": {
     "api/chat.js": {
       "includeFiles": "chat-context.md"
