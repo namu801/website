@@ -20,13 +20,51 @@
     sendBtn.disabled = value;
   }
 
+  const HTML_ESCAPES = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
+  function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, (c) => HTML_ESCAPES[c]);
+  }
+
+  // Minimal markdown-lite for AI replies: **bold** and bare URLs become real
+  // markup, everything else stays as plain escaped text (no full markdown
+  // parser needed for 2-4 sentence answers).
+  function renderInline(text) {
+    let html = escapeHtml(text);
+    html = html.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    html = html.replace(
+      /(https?:\/\/[^\s<]+)/g,
+      '<a href="$1" target="_blank" rel="noreferrer">$1</a>',
+    );
+    return html.replace(/\n/g, "<br>");
+  }
+
+  // Pulls a trailing [[work:slug]] marker (see chat-rules.md §5-7) out of an
+  // AI reply so it never flashes on screen mid-typewriter; the slug drives a
+  // "자세히 보기" button appended once typing finishes.
+  function extractWorkLink(text) {
+    const match = text.match(/\s*\[\[work:([a-z0-9-]+)\]\]\s*/);
+    if (!match) return { text, slug: null };
+    return { text: text.slice(0, match.index) + text.slice(match.index + match[0].length), slug: match[1] };
+  }
+
+  function appendWorkLinkButton(bubble, slug) {
+    const work = typeof WORKS !== "undefined" ? WORKS.find((w) => w.slug === slug) : null;
+    if (!work || typeof window.openWorkBySlug !== "function") return;
+    const link = document.createElement("button");
+    link.type = "button";
+    link.className = "chat-work-link";
+    link.textContent = `${work.t} 자세히 보기 →`;
+    link.addEventListener("click", () => window.openWorkBySlug(slug));
+    bubble.appendChild(link);
+  }
+
   function typeOut(el, text, speed = 16) {
     return new Promise((resolve) => {
       let i = 0;
-      el.textContent = "";
+      el.innerHTML = "";
       (function tick() {
         i += 1;
-        el.textContent = text.slice(0, i);
+        el.innerHTML = renderInline(text.slice(0, i));
         messagesEl.scrollTop = messagesEl.scrollHeight;
         if (i < text.length) {
           setTimeout(tick, speed);
@@ -164,7 +202,9 @@
 
       stopOrb();
       pending.classList.remove("chat-bubble-thinking");
-      await typeOut(pending, data.reply);
+      const { text: displayText, slug } = extractWorkLink(data.reply);
+      await typeOut(pending, displayText);
+      if (slug) appendWorkLinkButton(pending, slug);
       history.push({ role: "assistant", content: data.reply });
     } catch (error) {
       stopOrb();

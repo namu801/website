@@ -204,6 +204,15 @@
     return true;
   }
 
+  // Lets other scripts (the chat panel's "프로젝트 자세히 보기" buttons) open a
+  // case study by slug without reaching into this module's closure.
+  window.openWorkBySlug = function (slug) {
+    const idx = WORKS.findIndex((w) => w.slug === slug);
+    if (idx === -1) return false;
+    open(idx);
+    return true;
+  };
+
   function init() {
     renderGrids();
     buildOverlaySkeleton();
