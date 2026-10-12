@@ -499,20 +499,14 @@ p {
   display: inline-flex;
   align-items: center;
   padding: 9px 17px;
-  border: 1px solid var(--line-paper);
+  border: 1px solid var(--ink);
   border-radius: 999px;
   font-size: 13px;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--ink);
-  white-space: nowrap;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-}
-
-.pill:hover {
   background: var(--ink);
   color: var(--paper);
-  border-color: var(--ink);
+  white-space: nowrap;
 }
 
 /* Approach */
@@ -725,18 +719,6 @@ p {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-}
-
-.work-card-year {
-  flex: none;
-  margin-top: 2px;
-  padding: 4px 9px;
-  border: 1px solid var(--line-paper);
-  color: var(--ts-paper);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  white-space: nowrap;
 }
 
 .work-card-tags {

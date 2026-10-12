@@ -37,7 +37,6 @@
           ${coverHtml(w, "work-card-image")}
           <div class="work-card-meta">
             <h4 title="${w.t}">${w.t}</h4>
-            <span class="work-card-year">${w.y}</span>
           </div>
           <p class="work-card-tags">${w.tags.join(", ")}</p>
         `;
