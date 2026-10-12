@@ -1,6 +1,27 @@
 (() => {
   const CATS = ["Digital Product", "Experience Design", "Side Projects"];
 
+  // Renders an <img> into `cls` when the work has a real cover image, else keeps
+  // the CSS dither placeholder so projects without photos yet still look done.
+  function coverHtml(w, cls) {
+    if (w.images && w.images.length) {
+      return `<img class="${cls}" src="${w.images[0]}" alt="${w.t}" loading="lazy">`;
+    }
+    return `<div class="${cls}" data-dither="card"></div>`;
+  }
+
+  // Renders the ordered image list (minus the cover, already shown above it)
+  // as a stacked gallery inside the case-study detail page.
+  function galleryHtml(w) {
+    const rest = (w.images || []).slice(1);
+    if (!rest.length) return "";
+    return `
+      <div class="overlay-gallery-band">
+        ${rest.map((src) => `<img src="${src}" alt="${w.t}" loading="lazy">`).join("")}
+      </div>
+    `;
+  }
+
   // ---- Render work-card grids from WORKS (work-data.js) ----
   function renderGrids() {
     CATS.forEach((cat) => {
@@ -13,7 +34,7 @@
         card.className = "work-card";
         card.dataset.workIndex = String(i);
         card.innerHTML = `
-          <div class="work-card-image" data-dither="card"></div>
+          ${coverHtml(w, "work-card-image")}
           <div class="work-card-meta">
             <h4>${w.t}</h4>
             <span class="work-card-year">${w.y}</span>
@@ -47,7 +68,7 @@
           <p class="overlay-summary" data-summary></p>
           <div class="overlay-tags" data-tags></div>
         </div>
-        <div class="overlay-image-band"><div data-dither="card"></div></div>
+        <div class="overlay-image-band" data-image-band></div>
         <div class="overlay-facts-band">
           <div class="overlay-facts-grid" data-quickfacts></div>
         </div>
@@ -60,6 +81,7 @@
             <div class="overlay-metrics" data-metrics></div>
           </div>
         </div>
+        <div data-gallery></div>
         <div class="overlay-detail-band">
           <nav class="overlay-detail-nav" data-secnav></nav>
           <div class="overlay-sections" data-sections></div>
@@ -85,6 +107,9 @@
     panel.querySelector("[data-cat]").textContent = w.cat;
     panel.querySelector("[data-title]").textContent = w.t;
     panel.querySelector("[data-summary]").textContent = w.sum;
+
+    panel.querySelector("[data-image-band]").innerHTML = coverHtml(w, "overlay-cover");
+    panel.querySelector("[data-gallery]").innerHTML = galleryHtml(w);
 
     panel.querySelector("[data-tags]").innerHTML =
       `<span class="year">${w.y}</span>` + w.tags.map((t) => `<span class="tag">${t}</span>`).join("");
@@ -116,7 +141,6 @@
         <h3>${s.h}</h3>
         <p>${s.b}</p>
         <p>${s.b2}</p>
-        <div class="sec-image" data-dither="card"></div>
       </div>
     `,
       )
@@ -127,7 +151,7 @@
       .map(
         (m, k) => `
       <button type="button" class="overlay-more-card" data-more-index="${(i + k + 1) % WORKS.length}">
-        <div class="thumb" data-dither="card"></div>
+        ${coverHtml(m, "thumb")}
         <div class="body">
           <div class="cat">${m.cat} &nbsp;·&nbsp; ${m.y}</div>
           <h3>${m.t}</h3>

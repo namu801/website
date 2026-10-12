@@ -50,11 +50,16 @@ percentages, awards, or field-research counts (see existing entries in
 
 ## Asset Rules
 
-No local `images/`/`icons/` folders are in active use — all current
-imagery is the CSS dither-pattern placeholder (see Design Direction
-above). If real screenshots are added later, store them inside this
-project folder and reference them with a relative path from the file
-being edited; do not link to external image URLs.
+Each `WORKS` entry in `work-data.js` has a `slug` and an `images: []`
+array. Real photos/screenshots live in `images/<slug>/`, named in
+display order (`01.jpg`, `02.jpg`, ...); populate the `images` array
+with those paths in the same order. `case-overlay.js` uses
+`images[0]` as the card thumbnail, the case-study hero image, and the
+"more case studies" thumbnail, and renders the rest as a stacked
+gallery inside the case-study detail page. A project with an empty
+`images` array keeps the CSS dither-pattern placeholder (see Design
+Direction above) instead of a broken image — don't remove that
+fallback. Do not link to external image URLs.
 
 ## Resume Guidance
 

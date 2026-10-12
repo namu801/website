@@ -9,6 +9,8 @@ const WORKS = [
     co: "Maba Industry",
     role: "Lead UX/UI Designer",
     ty: "In-cabin infotainment",
+    slug: "pbv-passenger-infotainment-system",
+    images: [],
     sum: "Passenger-facing infotainment for a purpose-built vehicle cabin, carried from ride scenario to a real vehicle driving through Gangnam.",
     tags: ["Mobility", "Infotainment", "Multi-Display", "UX Writing"],
     facts: [
@@ -35,6 +37,8 @@ const WORKS = [
     co: "Maba Industry",
     role: "UX/UI Designer",
     ty: "Operator admin tool",
+    slug: "pbv-content-management-system",
+    images: [],
     sum: "The operator tool behind the cabin displays: scheduling, content structure, and a component set shared with the vehicle UI.",
     tags: ["Admin Tool", "Information Architecture", "Design System"],
     facts: [
@@ -56,6 +60,8 @@ const WORKS = [
     co: "Maba Industry",
     role: "UX/UI Designer",
     ty: "In-car control app",
+    slug: "driver-passenger-control-pad",
+    images: [],
     sum: "Two control apps for one cabin — separating what the driver commands from what passengers can adjust.",
     tags: ["Mobility", "In-Car App", "Control UI"],
     facts: [
@@ -77,6 +83,8 @@ const WORKS = [
     co: "Cheil Worldwide",
     role: "UX/UI Designer (Freelance)",
     ty: "Event mobile app",
+    slug: "samsung-tech-fair-docent-app",
+    images: [],
     sum: "A docent app for Samsung Tech Fair visitors, with the voting flow rebuilt to survive the end of a long show day.",
     tags: ["Mobile App", "Event Service", "UX Writing"],
     facts: [
@@ -101,6 +109,8 @@ const WORKS = [
     co: "Seoul Facilities Corporation",
     role: "Design Intern",
     ty: "Public kiosk UI",
+    slug: "public-parking-payment-kiosk",
+    images: [],
     sum: "A universal-design payment interface for Seoul's public parking kiosks, based on a citywide audit and on-site observation.",
     tags: ["Kiosk", "Public Service", "Universal Design"],
     facts: [
@@ -126,6 +136,8 @@ const WORKS = [
     co: "Maba Industry",
     role: "Experience Designer",
     ty: "Exhibition",
+    slug: "k-display-2024",
+    images: [],
     sum: "A booth that let visitors experience a PBV cabin they could not ride, compressed into a few minutes.",
     tags: ["Exhibition", "Immersive Experience", "PBV"],
     facts: [
@@ -147,6 +159,8 @@ const WORKS = [
     co: "Maba Industry",
     role: "Experience Designer",
     ty: "Exhibition",
+    slug: "world-smart-city-expo-2025",
+    images: [],
     sum: "The mobility zone of the LH exhibit, placing the PBV cabin inside a wider smart-city story.",
     tags: ["Exhibition", "Mobility Zone", "LH"],
     facts: [
@@ -168,6 +182,8 @@ const WORKS = [
     co: "Cheil Worldwide",
     role: "UX/UI Designer (Freelance)",
     ty: "Global tech show",
+    slug: "ces-2023-samsung-ready-care",
+    images: [],
     sum: "Content UI and on-site operation for Samsung's Ready Care exhibit at CES 2023.",
     tags: ["Global Tech Show", "Content UI", "Operation"],
     facts: [
@@ -189,6 +205,8 @@ const WORKS = [
     co: "Cheil Worldwide",
     role: "Project Manager",
     ty: "Global tech show",
+    slug: "ces-2023-hd-hyundai-oceanwise",
+    images: [],
     sum: "Project management and film content for HD Hyundai's OceanWise exhibit at CES 2023.",
     tags: ["Global Tech Show", "PM", "Film Content"],
     facts: [
@@ -210,6 +228,8 @@ const WORKS = [
     co: "Self-initiated",
     role: "Product Designer",
     ty: "Launched service",
+    slug: "quote-bakery-daily-quote-service",
+    images: [],
     sum: "A daily quote service designed and launched with a side-project team, from concept to a live product.",
     tags: ["Service Launch", "Product Design", "DDD"],
     facts: [
@@ -231,6 +251,8 @@ const WORKS = [
     co: "Self-initiated",
     role: "Designer",
     ty: "Idea-thon",
+    slug: "hyundai-mobis-esg-ideathon",
+    images: [],
     sum: "A traffic-safety concept for senior drivers, developed for the Hyundai Mobis ESG Ideathon.",
     tags: ["Idea-thon", "Senior Driver", "Traffic Safety"],
     facts: [
@@ -252,6 +274,8 @@ const WORKS = [
     co: "Companoid Institute of Technology",
     role: "Researcher",
     ty: "Research program",
+    slug: "hci-college-membership-cohort-2",
+    images: [],
     sum: "A research cohort at Companoid Institute of Technology, ending in a paper published through the HCI Society of Korea.",
     tags: ["Research", "HCI", "Academic Paper"],
     facts: [

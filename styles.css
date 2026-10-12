@@ -683,6 +683,8 @@ p {
   width: 100%;
   height: clamp(190px, 21vw, 285px);
   overflow: hidden;
+  object-fit: cover;
+  display: block;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1059,11 +1061,28 @@ html.no-agent .overlay {
   padding: clamp(26px, 5vh, 60px) clamp(18px, 4vw, 48px);
 }
 
-.overlay-image-band > div {
+.overlay-cover {
   max-width: 1140px;
   margin: 0 auto;
+  display: block;
   width: 100%;
   height: clamp(220px, 32vw, 440px);
+  object-fit: cover;
+}
+
+.overlay-gallery-band {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 clamp(18px, 4vw, 48px) clamp(44px, 7vh, 84px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3vh, 28px);
+}
+
+.overlay-gallery-band img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .overlay-facts-band {
@@ -1263,12 +1282,6 @@ html.no-agent .overlay {
   text-wrap: pretty;
 }
 
-.overlay-sec .sec-image {
-  margin-top: clamp(28px, 5vh, 52px);
-  width: 100%;
-  height: clamp(200px, 26vw, 380px);
-}
-
 .overlay-more-band {
   background: var(--ink);
   color: var(--paper);
@@ -1314,6 +1327,8 @@ html.no-agent .overlay {
 .overlay-more-card .thumb {
   width: 100%;
   height: clamp(150px, 17vw, 220px);
+  object-fit: cover;
+  display: block;
 }
 
 .overlay-more-card .body {
