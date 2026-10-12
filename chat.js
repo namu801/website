@@ -36,23 +36,29 @@
     });
   }
 
-  function openPanel() {
+  // Tracks whether the *user* (not a viewport resize) closed the panel, so
+  // resizing back up to desktop width doesn't fight an explicit close.
+  let userClosed = false;
+
+  function openPanel({ auto = false, focusInput = true } = {}) {
     panel.hidden = false;
     document.documentElement.classList.remove("no-agent");
     toggle.setAttribute("aria-expanded", "true");
-    input.focus();
+    if (!auto) userClosed = false;
+    if (focusInput) input.focus();
   }
 
-  function closePanel() {
+  function closePanel({ auto = false } = {}) {
     panel.hidden = true;
     document.documentElement.classList.add("no-agent");
     toggle.setAttribute("aria-expanded", "false");
+    if (!auto) userClosed = true;
   }
 
   toggle.addEventListener("click", () => {
     panel.hidden ? openPanel() : closePanel();
   });
-  closeBtn.addEventListener("click", closePanel);
+  closeBtn.addEventListener("click", () => closePanel());
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !panel.hidden) closePanel();
   });
@@ -61,10 +67,22 @@
   // webviews) show the homepage first instead of a full-screen Agent panel
   // (the chat-panel becomes a fixed full-screen overlay below 861px — see
   // the matching breakpoint in styles.css). On wider viewports it opens as
-  // a docked sidebar by default, same as before.
-  if (window.matchMedia("(min-width: 861px)").matches) {
-    openPanel();
+  // a docked sidebar by default, same as before. This also has to react to
+  // *resizing* an already-open window, not just the state at load: shrinking
+  // a desktop window below the breakpoint turned the still-open sidebar into
+  // the same full-screen takeover, which is the bug this guards against.
+  const desktopQuery = window.matchMedia("(min-width: 861px)");
+
+  function syncPanelToViewport(isDesktop) {
+    if (isDesktop) {
+      if (!userClosed && panel.hidden) openPanel({ auto: true, focusInput: false });
+    } else if (!panel.hidden) {
+      closePanel({ auto: true });
+    }
   }
+
+  syncPanelToViewport(desktopQuery.matches);
+  desktopQuery.addEventListener("change", (event) => syncPanelToViewport(event.matches));
 
   function addBubble(role, text) {
     const bubble = document.createElement("div");
