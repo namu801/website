@@ -1059,17 +1059,10 @@ html.no-agent .overlay {
   color: var(--ts-paper);
 }
 
-.overlay-image-band {
-  background: var(--paper-2);
-  padding: clamp(26px, 5vh, 60px) clamp(18px, 4vw, 48px);
-}
-
 .overlay-cover {
-  max-width: 1140px;
-  margin: 0 auto;
   display: block;
   width: 100%;
-  height: clamp(220px, 32vw, 440px);
+  aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 
