@@ -1395,6 +1395,10 @@ html.no-agent .overlay {
   font-weight: 700;
 }
 
+.chat-panel-header p {
+  margin: 0;
+}
+
 .chat-close {
   display: grid;
   place-items: center;
