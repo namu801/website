@@ -387,6 +387,9 @@ p {
 .split-section {
   background: var(--paper);
   color: var(--ink);
+  /* Keeps anchor-jumped sections (nav links, chat scroll-chips) from
+     landing with their heading hidden under the sticky site header. */
+  scroll-margin-top: 70px;
 }
 
 .split-section + .split-section {
