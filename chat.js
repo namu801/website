@@ -242,6 +242,10 @@
     const target = chip.dataset.target;
 
     if (action === "scroll") {
+      // A case-study overlay sits opaque on top of the homepage, so a scroll
+      // chip clicked while one is open would silently scroll content the
+      // visitor can't see. Close it first so the scroll is actually visible.
+      window.closeWorkOverlay?.();
       document.querySelector(target)?.scrollIntoView({ behavior: "smooth" });
     } else if (action === "link") {
       window.open(target, "_blank", "noreferrer");

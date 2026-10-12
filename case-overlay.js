@@ -213,6 +213,14 @@
     return true;
   };
 
+  // Lets the chat panel close the full-screen case-study overlay before it
+  // scrolls to a homepage anchor (e.g. the résumé chip): the overlay sits on
+  // an opaque layer above the homepage, so scrolling the page underneath it
+  // is invisible unless this runs first. Safe to call when nothing is open.
+  window.closeWorkOverlay = function () {
+    if (activeIndex !== null) close();
+  };
+
   function init() {
     renderGrids();
     buildOverlaySkeleton();
