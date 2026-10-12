@@ -18,9 +18,10 @@ stack (no build step, no framework) with an AI chat "Agent" feature.
   and the light/dark invert toggle.
 - `cursor-fx.js` — custom cursor ring/dot and magnetic-button hover
   effect (desktop pointer only).
-- `chat.js` / `api/chat.js` / `chat-context.md` — the "Agent" chat panel.
-  `chat-context.md` is the single source of information the AI answers
-  from; edit that file to change what it knows, not the code.
+- `chat.js` / `api/chat.js` / `chat-rules.md` — the "Agent" chat panel.
+  `chat-rules.md` is the single source the AI answers from — role, tone,
+  per-project fact cards, sensitive-question handling, everything; edit
+  that file to change what it knows or how it answers, not the code.
 - `SKILLS.md` — project-specific guidance for AI assistants editing this
   portfolio (design tokens, case-study data pattern, editing checklist).
 - `vercel.json` / `package.json` — deployment config for the `/api/chat`

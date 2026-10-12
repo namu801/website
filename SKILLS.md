@@ -64,6 +64,18 @@ fallback. Do not link to external image URLs.
 
 ## Chat Agent
 
+`chat-rules.md` is the entire system prompt for `/api/chat` — role, tone,
+per-project fact cards (what may/may not be said about each project),
+sensitive-question handling, jailbreak handling, and the recommended
+quick-reply chip answers. It's read raw by `api/chat.js` with one
+`{{TODAY}}` substitution; there's no separate profile file anymore. Edit
+`chat-rules.md` to change what the bot knows or how it answers — don't
+touch the system-prompt-building code for content changes. The quick-reply
+chips themselves live in `index.html`'s `#chat-chips` (a mix of
+`data-action="ask"` chips that call the AI and `data-action="scroll"` /
+`"link"` chips that don't); keep their wording in sync with §11 of
+`chat-rules.md` when either changes.
+
 `chat.js` drives the "Agent" panel; its "생각 중" bubble uses
 `thinking-orb.js`, a vendored vanilla-JS build of the canvas engine
 from the `thinking-orbs` npm package (MIT, by Jakub Antalik) — see the

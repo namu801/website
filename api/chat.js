@@ -4,11 +4,6 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 
-const PROFILE = readFileSync(
-  join(process.cwd(), "chat-context.md"),
-  "utf-8",
-);
-
 const RULES_TEMPLATE = readFileSync(
   join(process.cwd(), "chat-rules.md"),
   "utf-8",
@@ -20,12 +15,7 @@ function buildInstructions() {
     month: "long",
     day: "numeric",
   });
-  const rules = RULES_TEMPLATE.replace("{{TODAY}}", today);
-
-  return `${rules}
-
---- Yoonji Nam 정보 (chat-context.md) ---
-${PROFILE}`;
+  return RULES_TEMPLATE.replace("{{TODAY}}", today);
 }
 
 export default async function handler(req, res) {

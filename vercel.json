@@ -9,7 +9,7 @@
   ],
   "functions": {
     "api/chat.js": {
-      "includeFiles": "chat-context.md"
+      "includeFiles": "chat-rules.md"
     }
   }
 }
