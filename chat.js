@@ -241,6 +241,11 @@
     const action = chip.dataset.action;
     const target = chip.dataset.target;
 
+    window.gtag?.("event", "chat_chip_click", {
+      chip_label: chip.textContent.trim(),
+      chip_action: action,
+    });
+
     if (action === "scroll") {
       // A case-study overlay sits opaque on top of the homepage, so a scroll
       // chip clicked while one is open would silently scroll content the
