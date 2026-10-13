@@ -186,6 +186,18 @@ p {
   display: block;
 }
 
+/* motion.js applies clip-path to this inner span for the line-reveal
+   animation. clip-path on a plain inline element that wraps across
+   multiple lines is unreliable in Chromium — it only paints the first
+   line fragment and silently drops the rest, which is exactly what
+   happened when the Agent sidebar narrowed the hero enough for these
+   sentences to wrap (e.g. "Simplicity is" rendered, "what users see."
+   vanished). inline-block makes it one atomic box with its own wrapped
+   lines inside, so clip-path has a single well-defined box to clip. */
+[data-anim="line"] > span > span {
+  display: inline-block;
+}
+
 @media (prefers-reduced-motion: reduce) {
   [data-anim="line"] > span > span {
     clip-path: none !important;
