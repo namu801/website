@@ -541,13 +541,6 @@ p {
   padding: clamp(60px, 9vh, 116px) 0 clamp(72px, 11vh, 148px);
 }
 
-.approach-visual {
-  margin-top: 26px;
-  width: 100%;
-  max-width: 190px;
-  height: 120px;
-}
-
 .approach-card {
   padding: clamp(26px, 3.6vw, 40px) 0;
   border-top: 1px solid var(--line-paper);
@@ -1697,6 +1690,15 @@ html.no-agent .overlay {
   .split-section .wrap,
   #experience .wrap {
     flex-direction: column;
+  }
+
+  /* .split-label-col's flex-basis (240px) means "width" in the row layout
+     above, but once the container switches to flex-direction:column here,
+     the same flex-basis is read as a *height* instead — reserving a tall
+     empty box under short label content (e.g. "How I Work") regardless of
+     how little text is actually in it. auto lets it size to its content. */
+  .split-label-col {
+    flex-basis: auto;
   }
 }
 
