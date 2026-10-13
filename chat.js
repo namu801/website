@@ -154,26 +154,31 @@
     return bubble;
   }
 
-  // "생각 중" bubble: a small thinking-orbs canvas (see thinking-orb.js)
-  // next to the label, instead of the plain pulsing text it used to be.
-  function addThinkingBubble() {
-    const bubble = document.createElement("div");
-    bubble.className = "chat-bubble chat-bubble-assistant chat-bubble-thinking";
+  // AI answers aren't bubbles — a small thinking-orbs canvas (see
+  // thinking-orb.js) leads every answer, full panel width. While "생각 중"
+  // the icon and label sit side by side (chat-answer-pending); once the
+  // real reply lands the block switches to icon-above-text and the orb is
+  // paused (frozen on its last frame, not destroyed) so it stays visible
+  // as a static icon instead of animating forever.
+  function addAnswerBlock() {
+    const block = document.createElement("div");
+    block.className = "chat-answer chat-answer-pending";
 
     const canvas = document.createElement("canvas");
-    canvas.className = "thinking-orb";
-    bubble.appendChild(canvas);
+    canvas.className = "thinking-orb chat-answer-icon";
+    block.appendChild(canvas);
 
-    const label = document.createElement("span");
-    label.textContent = "생각 중";
-    bubble.appendChild(label);
+    const text = document.createElement("div");
+    text.className = "chat-answer-text chat-answer-thinking";
+    text.textContent = "생각 중";
+    block.appendChild(text);
 
-    messagesEl.appendChild(bubble);
+    messagesEl.appendChild(block);
     messagesEl.scrollTop = messagesEl.scrollHeight;
 
     const orb =
       window.ThinkingOrbs && typeof window.ThinkingOrbs.createThinkingOrb === "function"
-        ? window.ThinkingOrbs.createThinkingOrb(canvas, { state: "composing", size: 64, theme: "dark", ariaLabel: "생각 중" })
+        ? window.ThinkingOrbs.createThinkingOrb(canvas, { state: "composing", size: 64, theme: "dark", ariaLabel: "AI 에이전트" })
         : null;
     // Keep the 64px preset's dot density/speed tuning, just display it
     // smaller — same technique the upstream demo uses for its hero pill
@@ -181,18 +186,25 @@
     canvas.style.width = "42px";
     canvas.style.height = "42px";
 
-    return { bubble, stop: () => orb?.destroy() };
+    return {
+      block,
+      text,
+      reveal: () => block.classList.remove("chat-answer-pending"),
+      pause: () => orb?.setPaused(true),
+    };
   }
 
   async function sendMessage(text) {
     const trimmed = text.trim();
     if (!trimmed || busy) return;
 
+    document.getElementById("chat-empty-state")?.remove();
+
     setBusy(true);
     addBubble("user", trimmed);
     history.push({ role: "user", content: trimmed });
 
-    const { bubble: pending, stop: stopOrb } = addThinkingBubble();
+    const { block, text: answerText, reveal, pause } = addAnswerBlock();
 
     try {
       const response = await fetch("/api/chat", {
@@ -210,17 +222,19 @@
         throw new Error(data.error || "Request failed");
       }
 
-      stopOrb();
-      pending.classList.remove("chat-bubble-thinking");
+      answerText.classList.remove("chat-answer-thinking");
+      reveal();
       const { text: displayText, slugs } = extractWorkLinks(data.reply);
-      await typeOut(pending, displayText);
-      appendWorkLinkButtons(pending, slugs);
+      await typeOut(answerText, displayText);
+      pause();
+      appendWorkLinkButtons(block, slugs);
       history.push({ role: "assistant", content: data.reply });
     } catch (error) {
-      stopOrb();
-      pending.classList.remove("chat-bubble-thinking");
-      pending.textContent =
+      answerText.classList.remove("chat-answer-thinking");
+      reveal();
+      answerText.textContent =
         "죄송해요, 문제가 발생했어요. 다시 시도해주시거나 zjavbxjlove@naver.com으로 직접 연락해주세요.";
+      pause();
     }
 
     setBusy(false);

@@ -1414,14 +1414,8 @@ html.no-agent .overlay {
 .chat-panel-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 20px 24px;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.chat-panel-header p {
-  margin: 0;
 }
 
 .chat-close {
@@ -1448,6 +1442,41 @@ html.no-agent .overlay {
   padding: 20px 24px;
 }
 
+/* Empty-state greeting: not a bubble, fills the panel like a splash
+   screen until the first message is sent (see chat.js, which removes
+   this element then). */
+.chat-empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  padding: 24px;
+}
+
+.chat-empty-headline {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  /* Tonal, not colorful — near-white fading to gray, top to bottom. */
+  background: linear-gradient(180deg, #fbf1f1, #999999);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.chat-empty-sub {
+  margin: 0;
+  max-width: 280px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ts-paper);
+}
+
 .chat-bubble {
   max-width: 90%;
   padding: 10px 14px;
@@ -1457,23 +1486,53 @@ html.no-agent .overlay {
   white-space: pre-wrap;
 }
 
-.chat-bubble-assistant {
-  align-self: flex-start;
-  background: var(--paper-2);
-  color: var(--ink);
-}
-
 .chat-bubble-user {
   align-self: flex-end;
   background: var(--ink);
   color: var(--paper);
 }
 
-.chat-bubble strong {
+/* AI answers aren't bubbles — full panel width, led by the agent's orb
+   icon, same look whether it's still "생각 중" or a finished answer. */
+.chat-answer {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* "생각 중": icon and label sit on one line. Once the real answer lands,
+   .chat-answer-pending is removed and the default column layout (icon
+   above, full-width text below) takes over. */
+.chat-answer-pending {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-answer-icon {
+  flex-shrink: 0;
+}
+
+.chat-answer-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink);
+  white-space: pre-wrap;
+}
+
+.chat-answer-text.chat-answer-thinking {
+  color: var(--ts-paper);
+  font-style: italic;
+  animation: chat-thinking-pulse 1.1s ease-in-out infinite;
+}
+
+.chat-answer-text strong {
   font-weight: 700;
 }
 
-.chat-bubble a {
+.chat-answer-text a {
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -1646,27 +1705,6 @@ html.no-agent .overlay {
   cursor: not-allowed;
 }
 
-.chat-bubble-thinking {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 0;
-  background: none;
-  border-radius: 0;
-  max-width: none;
-  color: var(--ts-paper);
-  font-size: 14px;
-}
-
-.chat-bubble-thinking .thinking-orb {
-  flex-shrink: 0;
-}
-
-.chat-bubble-thinking span {
-  font-style: italic;
-  animation: chat-thinking-pulse 1.1s ease-in-out infinite;
-}
-
 @keyframes chat-thinking-pulse {
   0%,
   100% {
@@ -1678,7 +1716,7 @@ html.no-agent .overlay {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .chat-bubble-thinking span {
+  .chat-answer-text.chat-answer-thinking {
     animation: none;
     opacity: 0.8;
   }
