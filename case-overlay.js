@@ -80,7 +80,7 @@
         <div class="overlay-topbar">
           <div class="wrap">
             <button type="button" class="overlay-back" data-close><span>←</span> 뒤로</button>
-            <span class="overlay-brand">YOONJI NAM</span>
+            <button type="button" class="overlay-brand" data-close-home>YOONJI NAM</button>
             <span class="overlay-count" data-count></span>
           </div>
         </div>
@@ -237,6 +237,18 @@
       const moreCard = event.target.closest("[data-more-index]");
       if (moreCard) {
         open(Number(moreCard.dataset.moreIndex));
+        return;
+      }
+      // "YOONJI NAM" always goes to the very top of the homepage, unlike
+      // "뒤로" which just closes the overlay and leaves scroll position
+      // wherever the visitor was before opening it.
+      if (event.target.closest("[data-close-home]")) {
+        close();
+        // behavior: "instant" overrides the page's CSS scroll-behavior:
+        // smooth — without it the animated scroll-to-top is still easing
+        // in when the overlay (and its scroll-position-affecting layout)
+        // finishes closing, and the two fight each other.
+        window.scrollTo({ top: 0, behavior: "instant" });
         return;
       }
       if (event.target.closest("[data-close]")) {

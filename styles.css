@@ -1029,10 +1029,16 @@ html.no-agent .overlay {
 }
 
 .overlay-brand {
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  color: inherit;
   font-size: 13px;
   font-weight: 900;
   letter-spacing: -0.02em;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .overlay-count {
@@ -1488,8 +1494,9 @@ html.no-agent .overlay {
 
 .chat-bubble-user {
   align-self: flex-end;
-  background: var(--ink);
-  color: var(--paper);
+  border-radius: 999px;
+  background: #414141;
+  color: var(--ink);
 }
 
 /* AI answers aren't bubbles — full panel width, led by the agent's orb
