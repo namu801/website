@@ -176,6 +176,10 @@
     panel.hidden = false;
     panel.scrollTop = 0;
     document.body.style.overflow = "hidden";
+    window.gtag?.("event", "project_view", {
+      project_title: WORKS[i].t,
+      project_slug: WORKS[i].slug,
+    });
     if (pushHistory) {
       const hash = `#work/${WORKS[i].slug}`;
       if (location.hash !== hash) {
