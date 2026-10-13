@@ -44,7 +44,13 @@ export default async function handler(req, res) {
     const response = await client.messages.create({
       model: "claude-haiku-4-5",
       max_tokens: 1024,
-      system: buildInstructions(),
+      system: [
+        {
+          type: "text",
+          text: buildInstructions(),
+          cache_control: { type: "ephemeral" },
+        },
+      ],
       messages: [...safeHistory, { role: "user", content: message }],
     });
 
