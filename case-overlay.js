@@ -38,7 +38,6 @@
           <div class="work-card-meta">
             <h4 title="${w.t}">${w.t}</h4>
           </div>
-          <p class="work-card-tags">${w.tags.join(", ")}</p>
         `;
         grid.appendChild(card);
       });

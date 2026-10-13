@@ -757,22 +757,6 @@ p {
   overflow: hidden;
 }
 
-.work-card-tags {
-  margin: 8px 0 0;
-  font-size: 13px;
-  line-height: 1.75;
-  color: var(--ts-paper);
-  text-wrap: pretty;
-  /* Clamped to exactly 2 lines, same reasoning as .work-card-meta h4:
-     reserves identical height regardless of tag-list length, so every
-     card in a row is the same height naturally (align-items: start
-     above stops misalignment, this stops ragged row bottoms). */
-  min-height: 3.5em;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
 
 /* Experience / Resume */
 
