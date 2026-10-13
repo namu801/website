@@ -1116,7 +1116,8 @@ html.no-agent .overlay {
 .overlay-gallery-band {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 0 clamp(18px, 4vw, 48px) clamp(44px, 7vh, 84px);
+  padding: clamp(28px, 4vh, 44px) clamp(18px, 4vw, 48px) clamp(44px, 7vh, 84px);
+  border-top: 1px solid var(--line-paper);
   display: flex;
   flex-direction: column;
   gap: clamp(16px, 3vh, 28px);
@@ -1161,7 +1162,6 @@ html.no-agent .overlay {
   max-width: 1140px;
   margin: 0 auto;
   padding: clamp(44px, 7vh, 84px) clamp(18px, 4vw, 48px);
-  border-top: 1px solid var(--line-paper);
   display: flex;
   flex-wrap: wrap;
   gap: clamp(24px, 5vw, 80px);
