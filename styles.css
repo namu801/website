@@ -1,3 +1,17 @@
+/* Self-hosted (not loaded from a third-party CDN) so the page's own font
+   doesn't depend on an ad-blocker/privacy extension or CDN hiccup letting
+   a cross-origin stylesheet+font through — that was silently falling back
+   to the browser's default sans-serif for some visitors (e.g. incognito
+   windows with tracking protection on). One variable-font file covers
+   every weight the site actually uses (400/600/700/800/900). */
+@font-face {
+  font-family: "Pretendard";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("fonts/PretendardVariable.woff2") format("woff2-variations");
+}
+
 :root {
   --paper: #ffffff;
   --paper-2: #f1f0ed;
