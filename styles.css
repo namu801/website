@@ -1543,11 +1543,13 @@ html.no-agent .overlay {
   align-items: center;
   width: fit-content;
   margin-top: 10px;
-  padding: 7px 14px;
-  border: 1px solid var(--line-paper);
+  padding: 9px 16px;
+  border: none;
   border-radius: 999px;
-  background: none;
-  color: inherit;
+  /* Same filled-pill treatment as the user's own message bubble, so this
+     reads as a clear call-to-action instead of plain outlined text. */
+  background: var(--ink);
+  color: var(--paper);
   font-family: inherit;
   font-size: 12px;
   font-weight: 600;
