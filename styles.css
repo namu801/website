@@ -1583,15 +1583,13 @@ html.no-agent .overlay {
   opacity: 0.75;
 }
 
-.chat-contact-hint {
-  display: block;
-  padding: 0 24px 12px;
+.chat-disclaimer {
+  margin: 0;
+  padding: 10px 24px calc(10px + env(safe-area-inset-bottom, 0px));
   color: var(--ts-paper);
-  font-size: 12px;
-}
-
-.chat-contact-hint:hover {
-  color: var(--ink);
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: center;
 }
 
 .chat-input-row {

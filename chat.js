@@ -25,17 +25,46 @@
     return str.replace(/[&<>"']/g, (c) => HTML_ESCAPES[c]);
   }
 
-  // Minimal markdown-lite for AI replies: **bold** and bare URLs become real
-  // markup, everything else stays as plain escaped text (no full markdown
-  // parser needed for 2-4 sentence answers).
+  // Minimal markdown-lite for AI replies: just **bold**. Bare URLs are
+  // handled separately (extractUrls) and rendered as buttons instead of
+  // inline link text, so they're not touched here.
   function renderInline(text) {
     let html = escapeHtml(text);
     html = html.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-    html = html.replace(
-      /(https?:\/\/[^\s<]+)/g,
-      '<a href="$1" target="_blank" rel="noreferrer">$1</a>',
-    );
     return html.replace(/\n/g, "<br>");
+  }
+
+  // Friendly button label per known destination, so a bare URL the model
+  // drops into an answer (per chat-rules.md §5-2) reads as an inviting CTA
+  // instead of a raw link — falls back to a generic label for anything else.
+  function urlButtonLabel(url) {
+    if (/youtube\.com|youtu\.be/.test(url)) return "영상으로 보기 ↗";
+    if (/w-restaurant\.vercel\.app/.test(url)) return "청모픽 보러가기 ↗";
+    return "링크 열기 ↗";
+  }
+
+  // Pulls bare URLs out of an AI reply (same reasoning as extractWorkLinks:
+  // never let them flash mid-typewriter) so they can be rendered as buttons
+  // after typing finishes instead of inline underlined text.
+  function extractUrls(text) {
+    const urls = [];
+    const cleaned = text.replace(/[ \t]*(https?:\/\/[^\s<]+)[ \t]*/g, (_, url) => {
+      urls.push(url);
+      return "";
+    });
+    return { text: cleaned, urls: [...new Set(urls)] };
+  }
+
+  function appendUrlButtons(container, urls) {
+    urls.forEach((url) => {
+      const link = document.createElement("a");
+      link.className = "chat-work-link";
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      link.textContent = urlButtonLabel(url);
+      container.appendChild(link);
+    });
   }
 
   // Pulls every [[work:slug]] marker (see chat-rules.md §5-7) out of an AI
@@ -224,10 +253,12 @@
 
       answerText.classList.remove("chat-answer-thinking");
       reveal();
-      const { text: displayText, slugs } = extractWorkLinks(data.reply);
+      const { text: afterWorkLinks, slugs } = extractWorkLinks(data.reply);
+      const { text: displayText, urls } = extractUrls(afterWorkLinks);
       await typeOut(answerText, displayText);
       pause();
       appendWorkLinkButtons(block, slugs);
+      appendUrlButtons(block, urls);
       history.push({ role: "assistant", content: data.reply });
     } catch (error) {
       answerText.classList.remove("chat-answer-thinking");
