@@ -283,7 +283,7 @@ p {
   align-items: center;
   gap: 8px;
   flex: none;
-  height: 44px;
+  height: 35px;
   padding: 0 16px;
   background: var(--paper);
   color: var(--ink);
@@ -1161,6 +1161,7 @@ html.no-agent .overlay {
   max-width: 1140px;
   margin: 0 auto;
   padding: clamp(44px, 7vh, 84px) clamp(18px, 4vw, 48px);
+  border-top: 1px solid var(--line-paper);
   display: flex;
   flex-wrap: wrap;
   gap: clamp(24px, 5vw, 80px);
