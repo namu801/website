@@ -91,7 +91,16 @@ const WORKS = [
     role: "UXUI 디자이너 (메인 레이아웃 설계, 지도 인터랙션·예외 상태 정의, 실차 테스트 참여) — 디자이너 2인 체제",
     ty: "웹 (관리자 시스템)",
     slug: "pbv-content-location-targeting",
-    images: ["images/pbv-content-location-targeting/CMSgps_01.png"],
+    images: [
+      "images/pbv-content-location-targeting/CMSgps_01.png",
+      "images/pbv-content-location-targeting/GPS_2.png",
+      "images/pbv-content-location-targeting/GPS_3.png",
+      "images/pbv-content-location-targeting/GPS_5.png",
+      "images/pbv-content-location-targeting/GPS_6.png",
+      "images/pbv-content-location-targeting/GPS_7.png",
+      "images/pbv-content-location-targeting/GPS_8.png",
+      "images/pbv-content-location-targeting/GPS_9.png",
+    ],
     sum: "이동하는 차량에서 광고가 정해진 위치에서만 재생되도록, 지도 위에서 재생 위치와 반경을 설정하는 기능을 설계했습니다.",
     tags: ["Mobility", "B2B Admin", "Map Interaction", "State Design"],
     facts: [
