@@ -277,11 +277,13 @@ p {
 }
 
 .chat-toggle {
+  appearance: none;
+  -webkit-appearance: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   flex: none;
-  min-height: 44px;
+  height: 44px;
   padding: 0 16px;
   background: var(--paper);
   color: var(--ink);
@@ -290,6 +292,7 @@ p {
   font-family: inherit;
   font-size: 10px;
   font-weight: 700;
+  line-height: 1;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
