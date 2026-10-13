@@ -50,6 +50,7 @@ const WORKS = [
       "images/pbv-content-location-targeting/CMSgps_01.png",
       "images/pbv-content-location-targeting/GPS_2.png",
       "images/pbv-content-location-targeting/GPS_3.png",
+      "images/pbv-content-location-targeting/GPS_4.png",
       "images/pbv-content-location-targeting/GPS_5.png",
       "images/pbv-content-location-targeting/GPS_6.png",
       "images/pbv-content-location-targeting/GPS_7.png",
