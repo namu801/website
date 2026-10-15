@@ -10,6 +10,36 @@
     return `<div class="${cls}" data-dither="card"></div>`;
   }
 
+  // Renders a short "AI summary" callout of this project's strengths, when
+  // the project has one authored (see work-data.js `aiHighlights`). Projects
+  // without it simply render nothing here.
+  function aiHighlightsHtml(w) {
+    if (!w.aiHighlights || !w.aiHighlights.length) return "";
+    return `
+      <div class="overlay-ai-highlights">
+        <div class="overlay-ai-highlights-head">
+          <div class="overlay-ai-badge">
+            <svg class="overlay-ai-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <circle cx="23" cy="14" r="1.6" fill="currentColor"></circle>
+              <circle cx="20.4" cy="7.6" r="1.6" fill="currentColor"></circle>
+              <circle cx="14" cy="5" r="1.6" fill="currentColor"></circle>
+              <circle cx="7.6" cy="7.6" r="1.6" fill="currentColor"></circle>
+              <circle cx="5" cy="14" r="1.6" fill="currentColor"></circle>
+              <circle cx="7.6" cy="20.4" r="1.6" fill="currentColor"></circle>
+              <circle cx="14" cy="23" r="1.6" fill="currentColor"></circle>
+              <circle cx="20.4" cy="20.4" r="1.6" fill="currentColor"></circle>
+            </svg>
+          </div>
+          <p class="overlay-ai-highlights-label">AI가 이 프로젝트의 강점을 요약했어요</p>
+        </div>
+        <ul class="overlay-ai-highlights-list">
+          ${w.aiHighlights.map((h) => `<li>${h}</li>`).join("")}
+        </ul>
+        <p class="overlay-ai-highlights-disclaimer">실제 내용과 차이가 있을 수 있어요.</p>
+      </div>
+    `;
+  }
+
   // Renders the ordered image list (minus the cover, already shown above it)
   // as a stacked gallery inside the case-study detail page.
   function galleryHtml(w) {
@@ -88,6 +118,7 @@
           <h1 data-title></h1>
           <p class="overlay-summary" data-summary></p>
           <div class="overlay-tags" data-tags></div>
+          <div data-ai-highlights></div>
         </div>
         <div class="overlay-image-band" data-image-band></div>
         <div class="overlay-facts-band">
@@ -130,6 +161,8 @@
 
     panel.querySelector("[data-tags]").innerHTML =
       `<span class="year">${w.y}</span>` + w.tags.map((t) => `<span class="tag">${t}</span>`).join("");
+
+    panel.querySelector("[data-ai-highlights]").innerHTML = aiHighlightsHtml(w);
 
     panel.querySelector("[data-quickfacts]").innerHTML = `
       <div><div class="k">연도</div><div class="v">${w.y}</div></div>

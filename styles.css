@@ -1072,7 +1072,6 @@ html.no-agent .overlay {
 }
 
 .overlay-summary {
-  max-width: 720px;
   margin: clamp(18px, 3vh, 28px) 0 0;
   font-size: 16px;
   line-height: 1.85;
@@ -1089,12 +1088,12 @@ html.no-agent .overlay {
 
 .overlay-tags .year {
   padding: 7px 14px;
-  background: var(--ink);
-  color: var(--paper);
+  border: 1px solid var(--line-paper);
   border-radius: 999px;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
+  color: var(--ts-paper);
 }
 
 .overlay-tags .tag {
@@ -1103,6 +1102,82 @@ html.no-agent .overlay {
   border-radius: 999px;
   font-size: 11px;
   font-weight: 700;
+  color: var(--ts-paper);
+}
+
+.overlay-ai-highlights {
+  margin-top: clamp(28px, 4vh, 40px);
+  padding: clamp(22px, 2.8vw, 30px) clamp(22px, 3vw, 32px);
+  border: 1px solid var(--line-paper);
+  border-radius: 18px;
+  background: linear-gradient(180deg, var(--paper-2), var(--paper) 140%);
+}
+
+.overlay-ai-highlights-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.overlay-ai-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: var(--ink);
+}
+
+.overlay-ai-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--paper);
+}
+
+.overlay-ai-highlights-label {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.overlay-ai-highlights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0 0;
+  padding: 20px 0 0;
+  border-top: 1px solid var(--line-paper);
+  list-style: none;
+}
+
+.overlay-ai-highlights-list li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.overlay-ai-highlights-list li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--ink);
+  transform: rotate(45deg);
+}
+
+.overlay-ai-highlights-disclaimer {
+  margin: 16px 0 0;
+  font-size: 11px;
+  line-height: 1.6;
   color: var(--ts-paper);
 }
 
@@ -1136,11 +1211,17 @@ html.no-agent .overlay {
 }
 
 .overlay-facts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 18px clamp(20px, 3vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px 24px;
   border-top: 1px solid var(--line-paper);
   padding-top: clamp(20px, 3vh, 30px);
+}
+
+.overlay-facts-grid > div:nth-child(3) {
+  max-width: 360px;
 }
 
 .overlay-facts-grid .k {
@@ -1164,12 +1245,13 @@ html.no-agent .overlay {
   padding: clamp(44px, 7vh, 84px) clamp(18px, 4vw, 48px);
   display: flex;
   flex-wrap: wrap;
-  gap: clamp(24px, 5vw, 80px);
+  gap: clamp(16px, 2.5vw, 32px) clamp(60px, 7vw, 96px);
 }
 
 .overlay-body-label {
-  flex: 0 1 200px;
-  min-width: 160px;
+  flex: 0 1 90px;
+  min-width: 70px;
+  padding-top: clamp(15px, 2.2vh, 21px);
 }
 
 .overlay-body-content {
@@ -1778,6 +1860,11 @@ html.no-agent .overlay {
      how little text is actually in it. auto lets it size to its content. */
   .split-label-col {
     flex-basis: auto;
+  }
+
+  .overlay-facts-grid {
+    justify-content: flex-start;
+    column-gap: clamp(28px, 7vw, 48px);
   }
 }
 
