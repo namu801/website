@@ -12,6 +12,7 @@ const WORKS = [
     ty: "모바일, 태블릿",
     slug: "samsung-tech-fair-docent-app",
     images: [
+      "images/samsung-tech-fair-docent-app/stf_cover.png",
       "images/samsung-tech-fair-docent-app/STF_1.png",
       "images/samsung-tech-fair-docent-app/STF_2.png",
       "images/samsung-tech-fair-docent-app/STF_3.png",
@@ -55,6 +56,7 @@ const WORKS = [
     ty: "웹 (관리자 시스템)",
     slug: "pbv-content-location-targeting",
     images: [
+      "images/pbv-content-location-targeting/CMSgps_cover.png",
       "images/pbv-content-location-targeting/PBV_CMS_v2_1.png",
       "images/pbv-content-location-targeting/PBV_CMS_v2_2.png",
       "images/pbv-content-location-targeting/PBV_CMS_v2_3.png",
@@ -92,6 +94,7 @@ const WORKS = [
     ty: "인포테인먼트 (55인치 디스플레이 3면)",
     slug: "pbv-passenger-infotainment-system",
     images: [
+      "images/pbv-passenger-infotainment-system/multi_cover.png",
       "images/pbv-passenger-infotainment-system/PBV_HMI_1.png",
       "images/pbv-passenger-infotainment-system/PBV_HMI_2.png",
       "images/pbv-passenger-infotainment-system/PBV_HMI_3.png",
@@ -132,6 +135,7 @@ const WORKS = [
     ty: "웹 (관리자 시스템)",
     slug: "pbv-content-management-system",
     images: [
+      "images/pbv-content-management-system/pbv_cover.png",
       "images/pbv-content-management-system/PBV_CMS_v1_1.png",
       "images/pbv-content-management-system/PBV_CMS_v1_2.png",
       "images/pbv-content-management-system/PBV_CMS_v1_3.png",
