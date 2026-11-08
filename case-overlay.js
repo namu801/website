@@ -1,5 +1,5 @@
 (() => {
-  const CATS = ["Digital Product", "Experience Design", "Side Projects"];
+  const CATS = ["Digital Product", "AI Projects", "Experience Design", "Side Projects"];
 
   // Renders an <img> into `cls` when the work has a real cover image, else keeps
   // the CSS dither placeholder so projects without photos yet still look done.
