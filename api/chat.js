@@ -4,6 +4,35 @@ import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic();
 
+// Simple per-IP sliding-window limiter to deter abuse/cost-runaway on the
+// Anthropic API. Lives in function-instance memory: Fluid Compute reuses
+// instances across requests, so this holds up for normal traffic even
+// though it isn't shared across cold starts or regions.
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX_REQUESTS = 8;
+const rateLimitBuckets = new Map();
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const bucket = rateLimitBuckets.get(ip);
+
+  if (!bucket || now > bucket.resetAt) {
+    rateLimitBuckets.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+
+  bucket.count += 1;
+  return bucket.count > RATE_LIMIT_MAX_REQUESTS;
+}
+
+function getClientIp(req) {
+  const forwarded = req.headers["x-forwarded-for"];
+  if (typeof forwarded === "string" && forwarded.length) {
+    return forwarded.split(",")[0].trim();
+  }
+  return req.socket?.remoteAddress ?? "unknown";
+}
+
 const RULES_TEMPLATE = readFileSync(
   join(process.cwd(), "chat-rules.md"),
   "utf-8",
@@ -21,6 +50,11 @@ function buildInstructions() {
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method not allowed" });
+    return;
+  }
+
+  if (isRateLimited(getClientIp(req))) {
+    res.status(429).json({ error: "요청이 너무 많아요. 1분 후 다시 시도해주세요." });
     return;
   }
 

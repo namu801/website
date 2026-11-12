@@ -248,7 +248,9 @@
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Request failed");
+        const error = new Error(data.error || "Request failed");
+        error.status = response.status;
+        throw error;
       }
 
       answerText.classList.remove("chat-answer-thinking");
@@ -264,7 +266,9 @@
       answerText.classList.remove("chat-answer-thinking");
       reveal();
       answerText.textContent =
-        "죄송해요, 문제가 발생했어요. 다시 시도해주시거나 zjavbxjlove@naver.com으로 직접 연락해주세요.";
+        error.status === 429
+          ? error.message
+          : "죄송해요, 문제가 발생했어요. 다시 시도해주시거나 zjavbxjlove@naver.com으로 직접 연락해주세요.";
       pause();
     }
 
