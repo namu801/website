@@ -315,12 +315,16 @@ p {
   position: relative;
   margin: clamp(4px, 1vh, 12px) 0 0;
   /* Full-bleed breakout: ignores .hero's own side padding and the .wrap
-     max-width, so it always spans the true viewport width and scales
-     with it. The 22%-fade mask on the canvas (wave-arcs.js) keeps the
+     max-width, so it always spans the true content width and scales
+     with it. cqw, not vw — the available width depends on whether the
+     Agent sidebar is docked open, not just the window (same reasoning
+     as the @container page-content query further up this file); vw
+     overshot past .page-content's actual right edge whenever the panel
+     was open. The 22%-fade mask on the canvas (wave-arcs.js) keeps the
      pattern from reading as a hard-edged box at the top. */
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: 100cqw;
+  margin-left: calc(50% - 50cqw);
+  margin-right: calc(50% - 50cqw);
   aspect-ratio: 2.8 / 1;
   overflow: hidden;
 }
@@ -369,6 +373,17 @@ p {
      to 2 columns (orphaning the 3rd stat onto its own row) at several
      in-between widths instead of only below one clean breakpoint. */
   grid-template-columns: repeat(3, 1fr);
+  /* Full-bleed breakout (same idiom as .hero-visual, cqw for the same
+     Agent-sidebar reason): without this the border-top stops at .hero's
+     own content edge, short of where the full-bleed wave visual above
+     it actually reaches — a visible seam at the far corners. Matching
+     padding keeps the 3 columns' content at the same position as
+     before; only the border now reaches the true content edge, and
+     keeps doing so as the page is resized or the sidebar toggles. */
+  width: 100cqw;
+  margin-left: calc(50% - 50cqw);
+  margin-right: calc(50% - 50cqw);
+  padding: 0 clamp(18px, 4vw, 48px);
 }
 
 .stats-strip > div {
@@ -903,6 +918,7 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 14px;
+  margin-top: clamp(28px, 4vh, 44px);
   padding: 17px 32px;
   background: var(--ink);
   color: var(--paper);
@@ -919,20 +935,13 @@ p {
   box-shadow: inset 0 0 0 1px var(--ink);
 }
 
-.contact-location {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 28px;
-  margin-top: clamp(28px, 4vh, 44px);
-  font-size: 14px;
-  color: var(--ts-paper);
-}
-
 .contact-visual {
   position: relative;
-  margin-top: clamp(56px, 10vh, 120px);
-  display: flex;
-  justify-content: center;
+  margin-top: clamp(24px, 4vh, 40px);
+  /* Full-bleed breakout, same idiom as .hero-visual/.stats-strip. */
+  width: 100cqw;
+  margin-left: calc(50% - 50cqw);
+  margin-right: calc(50% - 50cqw);
 }
 
 .contact-visual > img {
@@ -1455,7 +1464,7 @@ html.no-agent .overlay {
    the whole panel without touching those rules. */
 
 .chat-panel {
-  --paper: #1e1e1e;
+  --paper: #121212;
   --paper-2: #363636;
   --ink: #f5f5f3;
   --ts-paper: #adadad;
