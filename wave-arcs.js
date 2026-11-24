@@ -96,7 +96,19 @@
       const u = 55000 / glow;
       const { r: cr, g: cg, b: cb } = parseRGB(lineColor);
 
+      // On narrow screens the full-width pattern reads as thin and spread
+      // too wide to register as the focal interaction. Zooming the drawn
+      // content (not the canvas element — that would also stretch the
+      // mask-image fade out of calibration) crops the edges and thickens
+      // the lines, without touching the soft top fade at all.
+      const zoom = isMobile ? 1.35 : 1;
+
       ctx.save();
+      if (zoom !== 1) {
+        ctx.translate(r / 2, i / 2);
+        ctx.scale(zoom, zoom);
+        ctx.translate(-r / 2, -i / 2);
+      }
       ctx.lineWidth = lineWidth;
       ctx.translate(r / 2, i + (isMobile ? 60 : 40));
 

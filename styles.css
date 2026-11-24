@@ -485,13 +485,6 @@ p {
   padding: clamp(72px, 11vh, 148px) 0 clamp(60px, 9vh, 116px);
 }
 
-.about-subtitle {
-  margin-top: 10px;
-  font-size: 13px;
-  line-height: 1.8;
-  color: var(--ts-paper);
-}
-
 .about-heading {
   margin: 31px 0 24px;
   font-size: clamp(23px, 2.9vw, 38px);
@@ -526,8 +519,11 @@ p {
 }
 
 .pill-row-label {
-  flex: 0 1 160px;
-  min-width: 130px;
+  /* Was 160px/130px — much wider than the longest label ("AI WORKFLOW",
+     ~94px), leaving a big dead gap before the pills. Sized to content
+     instead, with a little breathing room. */
+  flex: 0 1 110px;
+  min-width: 100px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -664,15 +660,6 @@ p {
   gap: clamp(20px, 5vw, 88px);
   align-items: flex-end;
   justify-content: space-between;
-}
-
-.works-head p {
-  max-width: 420px;
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.85;
-  color: var(--ts-paper);
-  text-wrap: pretty;
 }
 
 .work-group {
