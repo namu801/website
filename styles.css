@@ -368,6 +368,12 @@ p {
 .stats-strip {
   border-top: 1px solid var(--line-ink);
   display: grid;
+  /* Default grid stretch makes every cell match the row's tallest
+     neighbor's height, but a cell's own (block, top-anchored) content
+     doesn't grow to fill that — it just leaves dead air below its own
+     padding-bottom whenever a sibling wraps to 2 lines and this one
+     doesn't. align-items: start sizes each cell to its own content. */
+  align-items: start;
   /* A fixed 3-up grid, not auto-fit/minmax: auto-fit recalculates how many
      180px tracks fit the exact container width, so it silently collapsed
      to 2 columns (orphaning the 3rd stat onto its own row) at several
