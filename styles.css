@@ -375,7 +375,11 @@ p {
 .stats-strip {
   border-top: 1px solid var(--line-ink);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  /* A fixed 3-up grid, not auto-fit/minmax: auto-fit recalculates how many
+     180px tracks fit the exact container width, so it silently collapsed
+     to 2 columns (orphaning the 3rd stat onto its own row) at several
+     in-between widths instead of only below one clean breakpoint. */
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .stats-strip > div {
@@ -386,6 +390,21 @@ p {
 
 .stats-strip > div:last-child {
   border-right: none;
+}
+
+@media (max-width: 680px) {
+  .stats-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-strip > div {
+    border-right: none;
+    border-bottom: 1px solid var(--line-ink);
+  }
+
+  .stats-strip > div:last-child {
+    border-bottom: none;
+  }
 }
 
 .stat-label {
