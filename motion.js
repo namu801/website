@@ -77,7 +77,7 @@
       ease: "power3.out",
     });
 
-    gsap.from(document.querySelectorAll('[data-dither="hero"]'), {
+    gsap.from(document.querySelectorAll(".hero-visual"), {
       opacity: 0,
       scale: 1.04,
       duration: 1.6,
