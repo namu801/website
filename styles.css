@@ -920,24 +920,24 @@ p {
   gap: 14px;
   margin-top: clamp(28px, 4vh, 44px);
   padding: 17px 32px;
-  background: var(--ink);
-  color: var(--paper);
+  background: transparent;
+  color: var(--ink);
   border-radius: 999px;
+  box-shadow: inset 0 0 0 1px var(--ink);
   font-size: clamp(14px, 1.5vw, 18px);
   font-weight: 800;
   letter-spacing: -0.01em;
-  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .btn-contact:hover {
-  background: transparent;
-  color: var(--ink);
-  box-shadow: inset 0 0 0 1px var(--ink);
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .contact-visual {
   position: relative;
-  margin-top: clamp(24px, 4vh, 40px);
+  margin-top: clamp(56px, 10vh, 120px);
   /* Full-bleed breakout, same idiom as .hero-visual/.stats-strip. */
   width: 100cqw;
   margin-left: calc(50% - 50cqw);
