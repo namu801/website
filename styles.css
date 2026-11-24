@@ -1673,7 +1673,7 @@ html.no-agent .overlay {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  padding: 0 24px 16px 32px;
+  padding: 0 24px 32px 32px;
 }
 
 .chat-chip {
