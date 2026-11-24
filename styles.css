@@ -906,11 +906,13 @@ p {
 }
 
 .contact-heading {
-  /* Negative top margin cancels the line-height's own half-leading
-     (roughly (1.38 - 1) * font-size / 2), so the glyph ink lines up
-     with "05 CONTACT" in the label column instead of sitting visibly
-     lower just from the line box's built-in padding above the text. */
-  margin: -8px 0 clamp(12px, 2vh, 20px);
+  /* Aligns with "Contact" (the h2 below "05 CONTACT" in the label
+     column), not with "05 CONTACT" itself. That h2 sits ~31px lower
+     than this column's own top (the eyebrow line above it, plus its
+     own 14px margin-top), and its line-height leaves less half-leading
+     above the glyph than this heading's taller line-height does — this
+     margin bridges both of those so the two glyphs' ink lines up. */
+  margin: clamp(18px, 2.2vw, 27px) 0 clamp(12px, 2vh, 20px);
   font-size: clamp(26px, 3.4vw, 44px);
   font-weight: 800;
   line-height: 1.38;
