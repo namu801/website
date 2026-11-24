@@ -906,7 +906,7 @@ p {
 }
 
 .contact-heading {
-  margin: 0 0 clamp(32px, 5vh, 56px);
+  margin: 0 0 clamp(12px, 2vh, 20px);
   font-size: clamp(26px, 3.4vw, 44px);
   font-weight: 800;
   line-height: 1.38;
@@ -918,7 +918,7 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  margin-top: clamp(12px, 2vh, 20px);
+  margin-top: clamp(4px, 1vh, 8px);
   padding: 17px 32px;
   background: transparent;
   color: var(--ink);
