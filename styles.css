@@ -1868,8 +1868,11 @@ html.no-agent .overlay {
      above, but once the container switches to flex-direction:column here,
      the same flex-basis is read as a *height* instead — reserving a tall
      empty box under short label content (e.g. "How I Work") regardless of
-     how little text is actually in it. auto lets it size to its content. */
-  .split-label-col {
+     how little text is actually in it. auto lets it size to its content.
+     .exp-intro (Career's own label column, 400px basis) has the same
+     problem — it isn't .split-label-col, so needs the same reset. */
+  .split-label-col,
+  .exp-intro {
     flex-basis: auto;
   }
 
