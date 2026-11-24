@@ -145,7 +145,7 @@
       });
     });
 
-    document.querySelectorAll('[data-dither="card"], [data-dither="sm"], [data-dither="foot"]').forEach((el) => {
+    document.querySelectorAll('[data-dither="card"], [data-dither="sm"], .contact-visual img').forEach((el) => {
       gsap.fromTo(
         el,
         { opacity: 0, y: 24 },

@@ -135,28 +135,6 @@ p {
   mask-image: radial-gradient(closest-side circle at 40% 45%, #000 10%, rgba(0, 0, 0, 0.6) 45%, transparent 80%);
 }
 
-[data-dither="foot"] {
-  background-color: transparent;
-  background-image: radial-gradient(circle, var(--ink) 1.15px, transparent 1.5px),
-    radial-gradient(circle, var(--ink) 0.65px, transparent 1px);
-  background-size: 7px 7px, 7px 7px;
-  background-position: 0 0, 3.5px 3.5px;
-  -webkit-mask-image: radial-gradient(
-    closest-side ellipse at 50% 60%,
-    #000 5%,
-    rgba(0, 0, 0, 0.6) 32%,
-    rgba(0, 0, 0, 0.2) 60%,
-    transparent 82%
-  );
-  mask-image: radial-gradient(
-    closest-side ellipse at 50% 60%,
-    #000 5%,
-    rgba(0, 0, 0, 0.6) 32%,
-    rgba(0, 0, 0, 0.2) 60%,
-    transparent 82%
-  );
-}
-
 [data-dither="card"] {
   background-color: var(--ink-2);
 }
@@ -957,10 +935,10 @@ p {
   justify-content: center;
 }
 
-.contact-visual > div {
-  width: min(760px, 100%);
-  height: clamp(160px, 26vw, 300px);
-  pointer-events: none;
+.contact-visual > img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .contact-legal {
