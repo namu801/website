@@ -667,7 +667,7 @@ p {
 }
 
 .work-group {
-  margin-top: clamp(76px, 12vh, 148px);
+  margin-top: clamp(38px, 6vh, 74px);
 }
 
 .work-group-head {
