@@ -314,7 +314,7 @@ p {
   margin: clamp(22px, 3.4vh, 38px) 0 0;
   font-size: clamp(31px, 5vw, 64px);
   font-weight: 800;
-  line-height: 1.2;
+  line-height: 1.35;
   letter-spacing: -0.035em;
   text-wrap: balance;
 }
@@ -327,9 +327,9 @@ p {
   max-width: 640px;
   margin: clamp(20px, 3vh, 30px) auto 0;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.85;
-  color: var(--ts-ink);
+  color: #b3b3b3;
   text-wrap: pretty;
 }
 
