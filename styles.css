@@ -1211,7 +1211,11 @@ html.no-agent .overlay {
 .overlay-gallery-band {
   max-width: 1140px;
   margin: 0 auto;
-  padding: clamp(28px, 4vh, 44px) clamp(18px, 4vw, 48px) clamp(44px, 7vh, 84px);
+  /* Bottom padding matches .overlay-body-band's own (doubled) bottom
+     padding -- this is the same "before the dark more-work band" gap,
+     just for projects whose content ends in the image gallery instead
+     of the facts/metrics band. */
+  padding: clamp(28px, 4vh, 44px) clamp(18px, 4vw, 48px) clamp(88px, 14vh, 168px);
   border-top: 1px solid var(--line-paper);
   display: flex;
   flex-direction: column;
