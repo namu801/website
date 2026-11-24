@@ -72,46 +72,6 @@ p {
   padding: 0 clamp(18px, 4vw, 48px);
 }
 
-/* Cursor-fine only: hide native cursor on interactive elements so the
-   custom ring/dot (cursor-fx.js) can take over. Touch/coarse pointers
-   are completely untouched. */
-@media (pointer: fine) and (hover: hover) {
-  a,
-  button,
-  [data-magnetic],
-  [data-work-card] {
-    cursor: none;
-  }
-}
-
-.cursor-ring,
-.cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 998;
-  opacity: 0;
-  mix-blend-mode: difference;
-  transition: opacity 0.2s ease, transform 0.15s ease;
-}
-
-.cursor-ring {
-  width: 34px;
-  height: 34px;
-  margin: -17px 0 0 -17px;
-  border: 1px solid var(--paper);
-  border-radius: 50%;
-}
-
-.cursor-dot {
-  width: 5px;
-  height: 5px;
-  margin: -2.5px 0 0 -2.5px;
-  background: var(--paper);
-  border-radius: 50%;
-}
-
 .scroll-progress {
   position: fixed;
   top: 0;
@@ -1712,12 +1672,12 @@ html.no-agent .overlay {
 .chat-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
   padding: 0 24px 16px 32px;
 }
 
 .chat-chip {
-  padding: 7px 12px;
+  padding: 12px 16px;
   border: 1px solid var(--line-paper);
   border-radius: 999px;
   background: var(--paper);
