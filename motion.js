@@ -132,9 +132,10 @@
       });
     }
 
-    // Bold highlight words in each experience row underline themselves in
-    // reading order as that row scrolls through the viewport.
-    document.querySelectorAll(".exp-row").forEach((row) => {
+    // Bold highlight words in each experience row (and the About/How I Work
+    // paragraphs below) underline themselves in reading order as that block
+    // scrolls through the viewport.
+    document.querySelectorAll(".exp-row, .about-body, .approach-card").forEach((row) => {
       const hl = row.querySelectorAll(".hl");
       if (!hl.length) return;
       const tl = gsap.timeline({

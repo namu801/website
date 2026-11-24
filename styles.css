@@ -893,6 +893,12 @@ p {
   background-image: linear-gradient(var(--ink), var(--ink));
 }
 
+.about-body .hl,
+.approach-card .hl {
+  color: var(--ink);
+  background-image: linear-gradient(var(--ink), var(--ink));
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hl {
     background-size: 100% 1px;
@@ -1250,7 +1256,7 @@ html.no-agent .overlay {
 .overlay-body-band {
   max-width: 1140px;
   margin: 0 auto;
-  padding: clamp(44px, 7vh, 84px) clamp(18px, 4vw, 48px);
+  padding: clamp(44px, 7vh, 84px) clamp(18px, 4vw, 48px) clamp(88px, 14vh, 168px);
   display: flex;
   flex-wrap: wrap;
   gap: clamp(16px, 2.5vw, 32px) clamp(60px, 7vw, 96px);
@@ -1323,12 +1329,13 @@ html.no-agent .overlay {
 .overlay-more-band {
   background: var(--ink);
   color: var(--paper);
-  /* Top padding doubled: this band's background-color change is meant to
-     read as "the project ended, here's other work" at a glance, but the
-     gap was too tight to register as a real section break. Only the top
-     changes — this sits after every project's last content band (gallery
-     or facts) regardless of how many images it has. */
-  padding: clamp(88px, 16vh, 176px) clamp(18px, 4vw, 48px) clamp(44px, 8vh, 88px);
+  /* Top padding was doubled at one point to read as a clear section
+     break, but that overshot -- paired with .overlay-body-band's own
+     bottom padding (now doubled instead), the gap before this band's
+     background change was too wide and the gap after it (before "다른
+     작업물" appears) was too tight relative to it. Back to a symmetric
+     top/bottom here. */
+  padding: clamp(44px, 8vh, 88px) clamp(18px, 4vw, 48px);
 }
 
 .overlay-more-band .inner {
