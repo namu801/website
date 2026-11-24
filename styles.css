@@ -431,6 +431,11 @@ p {
   font-size: clamp(17px, 1.9vw, 22px);
   font-weight: 800;
   letter-spacing: -0.02em;
+  /* Korean breaks between any two characters by default, so a narrow
+     column could split a single word (e.g. "서비스" -> "서" / "비스").
+     keep-all plus &nbsp; inside each · -separated phrase (in the markup)
+     means a line break only ever falls at the · itself. */
+  word-break: keep-all;
 }
 
 /* ---------- Generic split section (About / Approach / Works / Experience / Contact) ---------- */
