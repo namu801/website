@@ -906,7 +906,11 @@ p {
 }
 
 .contact-heading {
-  margin: 0 0 clamp(12px, 2vh, 20px);
+  /* Negative top margin cancels the line-height's own half-leading
+     (roughly (1.38 - 1) * font-size / 2), so the glyph ink lines up
+     with "05 CONTACT" in the label column instead of sitting visibly
+     lower just from the line box's built-in padding above the text. */
+  margin: -8px 0 clamp(12px, 2vh, 20px);
   font-size: clamp(26px, 3.4vw, 44px);
   font-weight: 800;
   line-height: 1.38;
@@ -937,7 +941,7 @@ p {
 
 .contact-visual {
   position: relative;
-  margin-top: clamp(56px, 10vh, 120px);
+  margin-top: clamp(28px, 5vh, 60px);
   /* Full-bleed breakout, same idiom as .hero-visual/.stats-strip. */
   width: 100cqw;
   margin-left: calc(50% - 50cqw);
