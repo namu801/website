@@ -342,7 +342,7 @@ p {
 .hero-cta-row {
   display: flex;
   justify-content: center;
-  margin-top: clamp(24px, 3vh, 32px);
+  margin-top: clamp(40px, 6vh, 56px);
 }
 
 .btn-primary {
@@ -1646,7 +1646,7 @@ html.no-agent .overlay {
 
 .chat-answer-text {
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.8;
   color: var(--ink);
   white-space: pre-wrap;
 }
